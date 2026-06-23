@@ -466,36 +466,43 @@ export default function Home() {
               rel="noopener noreferrer"
               className="px-5 py-2.5 rounded-lg border border-[#3a3939] text-[#c8c6c5] hover:text-[#ffbf00] hover:border-[#ffbf00] text-xs font-semibold uppercase tracking-wider transition-all duration-200"
             >
-              @[handle] meydani_cafe1
+              @meydani_cafe1
             </a>
           </div>
 
-          {/* 6 Photo Grid Placeholders with premium overlays */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {/* 3 Real Embedded Reels */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { label: "Hummus Dip", grad: "from-[#2b1010] to-[#502818]", link: "https://www.instagram.com/meydani_cafe1/reel/DZjfw6IOK92/?hl=en" },
-              { label: "River Deck", grad: "from-[#10202b] to-[#1a384f]", link: "https://www.instagram.com/mubashirkashmirii/reel/DYCWrvWpe5w/?hl=en" },
-              { label: "Shish Tawook", grad: "from-[#281810] to-[#4c2d1b]", link: "https://www.instagram.com/meydani_cafe1/reel/DWsuULoDkCW/?hl=en" },
-              { label: "Turkish Tea", grad: "from-[#2b1020] to-[#501a38]", link: "https://www.instagram.com/nexgen.marketting/reel/DZhtId9JvDx/?hl=en" },
-              { label: "Cozy Dining", grad: "from-[#1a102b] to-[#341d50]", link: "https://www.instagram.com/meydani_cafe1/reel/DZBuQ53OlwQ/?hl=en" },
-              { label: "Kunafa Plate", grad: "from-[#2b2b10] to-[#4f4f1a]", link: "https://www.instagram.com/meydani_cafe1/reel/DYrajFsMmse/?hl=en" }
-            ].map((tile, i) => (
-              <a 
-                href={tile.link}
-                key={i} 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative h-44 rounded-lg overflow-hidden group border border-[#2d2b2b]"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${tile.grad} opacity-80 group-hover:scale-105 transition-transform duration-300`} />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                <div className="absolute inset-0 p-4 flex items-end justify-center text-center opacity-80 group-hover:opacity-100 transition-opacity">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-[#c8c6c5] font-sans">
-                    {tile.label}
-                  </span>
+              { label: "Meydani Cafe Grills & Vibe", link: "https://www.instagram.com/meydani_cafe1/reel/DZjfw6IOK92/?hl=en" },
+              { label: "Mubashir Kashmiri Review", link: "https://www.instagram.com/mubashirkashmirii/reel/DYCWrvWpe5w/?hl=en" },
+              { label: "Authentic Turkish Flavors", link: "https://www.instagram.com/meydani_cafe1/reel/DWsuULoDkCW/?hl=en" }
+            ].map((tile, i) => {
+              const match = tile.link.match(/\/(p|reel|tv)\/([A-Za-z0-9_-]+)/);
+              const embedUrl = match ? `https://www.instagram.com/${match[1]}/${match[2]}/embed/` : null;
+              return (
+                <div 
+                  key={i} 
+                  className="w-full h-[480px] rounded-2xl overflow-hidden bg-[#141313] border border-[#2d2b2b] hover:border-[#ffbf00]/30 hover:shadow-xl hover:shadow-[#ffbf00]/5 transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div className="flex-1 w-full relative overflow-hidden">
+                    <iframe
+                      src={embedUrl}
+                      className="w-full h-full border-0 absolute inset-0"
+                      scrolling="no"
+                      allowtransparency="true"
+                      allow="encrypted-media"
+                      loading="lazy"
+                      title={tile.label}
+                    />
+                  </div>
+                  <div className="p-3 bg-[#141313] border-t border-[#2d2b2b] text-center">
+                    <span className="text-[10px] uppercase tracking-wider text-[#ffbf00] font-semibold">
+                      {tile.label}
+                    </span>
+                  </div>
                 </div>
-              </a>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
