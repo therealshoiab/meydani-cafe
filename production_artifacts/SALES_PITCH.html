@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Restaurant Website Solution — Sales Presentation</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #141313;
+      --color-surface: #1e1e1e;
+      --color-accent: #ffbf00;
+      --color-text: #c8c6c5;
+      --color-muted: #8e9192;
+      --color-white: #ffffff;
+      --color-dark: #0a0a0a;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 1.5rem;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: var(--color-surface);
+      border: 1px border-[#2d2b2b];
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .header {
+      padding: 2.5rem 2rem;
+      background: linear-gradient(135deg, #1e1e1e, #0f0f0f);
+      border-bottom: 2px solid var(--color-accent);
+      text-align: center;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--color-white);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .logo span {
+      color: var(--color-accent);
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+    .content {
+      padding: 2rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--color-white);
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2:first-of-type {
+      margin-top: 0;
+    }
+    .accent-line {
+      width: 20px;
+      height: 2px;
+      background-color: var(--color-accent);
+      display: inline-block;
+    }
+    p.intro {
+      font-size: 0.95rem;
+      color: var(--color-muted);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Checklist */
+    .checklist {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .checklist li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+    .checklist li strong {
+      color: var(--color-white);
+    }
+
+    /* Pain Points */
+    .pain-points {
+      margin-bottom: 1.5rem;
+    }
+    .pain-point {
+      background-color: var(--color-bg);
+      border: 1px solid #2d2b2b;
+      padding: 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .pain-point h3 {
+      font-size: 0.95rem;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pain-point p {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      line-height: 1.5;
+    }
+
+    /* Before / After Table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #2d2b2b;
+    }
+    .comparison-table th {
+      color: var(--color-white);
+      font-weight: 700;
+    }
+    .comparison-table td.before {
+      color: #ef4444;
+      background-color: rgba(239, 68, 68, 0.03);
+    }
+    .comparison-table td.after {
+      color: #10b981;
+      background-color: rgba(16, 185, 129, 0.03);
+      font-weight: 600;
+    }
+
+    /* Pricing Section */
+    .pricing-box {
+      background: linear-gradient(135deg, #2d2a1a, #1a1505);
+      border: 1px solid var(--color-accent);
+      padding: 2rem 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .price-tag {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      margin-bottom: 0.25rem;
+    }
+    .price-term {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-white);
+      margin-bottom: 1rem;
+    }
+    .price-details {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Upsells */
+    .upsells {
+      display: grid;
+      grid-cols: 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .upsell-card {
+      background-color: var(--color-bg);
+      border: 1px solid #2d2b2b;
+      padding: 1.25rem;
+      border-radius: 12px;
+      text-align: left;
+    }
+    .upsell-card h4 {
+      font-size: 0.9rem;
+      color: var(--color-white);
+      margin-bottom: 0.25rem;
+    }
+    .upsell-card .upsell-price {
+      color: var(--color-accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .upsell-card p {
+      font-size: 0.75rem;
+      color: var(--color-muted);
+    }
+
+    /* Testimonial */
+    .testimonial {
+      background-color: rgba(255, 191, 0, 0.03);
+      border-left: 3px solid var(--color-accent);
+      padding: 1.5rem;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .testimonial p {
+      font-size: 0.85rem;
+      color: var(--color-text);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .testimonial cite {
+      font-size: 0.75rem;
+      color: var(--color-accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: block;
+      font-style: normal;
+    }
+
+    /* WhatsApp Button CTA */
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: #25d366;
+      color: var(--color-white);
+      text-decoration: none;
+      padding: 1.25rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: background-color 0.2s;
+      margin-top: 2rem;
+      box-shadow: 0 10px 20px -10px rgba(37, 211, 102, 0.5);
+    }
+    .btn-whatsapp:hover {
+      background-color: #20ba5a;
+    }
+    .btn-whatsapp svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="logo">Meydani<span>Solution</span></div>
+      <div class="subtitle">Restaurant Web Accelerator</div>
+    </div>
+    
+    <div class="content">
+      <p class="intro">
+        Transform your restaurant from clunky PDF menus and high aggregator commission fees to a premium, conversion-focused digital deck with integrated WhatsApp orders and direct reservations.
+      </p>
+
+      <h2><span class="accent-line"></span> Three Pain Points Solved</h2>
+      <div class="pain-points">
+        <div class="pain-point">
+          <h3>1. 0% Aggregator Commission Fees</h3>
+          <p>Third-party platforms charge up to 15-25% commission on every order. Our direct-to-WhatsApp shopping cart routes orders straight to your counter, keeping your profit margins intact.</p>
+        </div>
+        <div class="pain-point">
+          <h3>2. Stop forcing zoomable PDFs</h3>
+          <p>Diners hate downloading heavy, zoom-heavy PDF menus. Our mobile-first, searchable, and categorized menu allows guests to browse and filter by Veg/Non-Veg instantly.</p>
+        </div>
+        <div class="pain-point">
+          <h3>3. Capture Local Srinagar Search</h3>
+          <p>Get found when tourists and locals search for dining options nearby. Built-in SEO keywords, canonical links, and aggregate trust rating schemas ensure maximum visibility.</p>
+        </div>
+      </div>
+
+      <h2><span class="accent-line"></span> Before vs After</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Without Website</th>
+            <th>With Our Solution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commission Fees</td>
+            <td class="before">15 - 25% Per Order</td>
+            <td class="after">0% Direct Delivery</td>
+          </tr>
+          <tr>
+            <td>Menu Experience</td>
+            <td class="before">Heavy Zoomable PDFs</td>
+            <td class="after">Searchable & Filterable</td>
+          </tr>
+          <tr>
+            <td>Table Bookings</td>
+            <td class="before">Manual Phone Tag</td>
+            <td class="after">WhatsApp Request Form</td>
+          </tr>
+          <tr>
+            <td>Trust Ratings</td>
+            <td class="before">Hidden on Maps</td>
+            <td class="after">Front-and-center Badges</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2><span class="accent-line"></span> What's Included (20+ Features)</h2>
+      <ul class="checklist">
+        <li><strong>Homepage Hero</strong> with atmospheric cuisine gradient.</li>
+        <li><strong>Google & Zomato badges</strong> showing verified trust scores.</li>
+        <li><strong>Interactive Digital Menu</strong> with dynamic search tags.</li>
+        <li><strong>Veg / Non-Veg</strong> indicators and bestseller labels.</li>
+        <li><strong>WhatsApp Shopping Cart</strong> drawer for easy checkout.</li>
+        <li><strong>Native Table Reservation</strong> form with +/- guest steppers.</li>
+        <li><strong>Date boundary restrictions</strong> to prevent booking errors.</li>
+        <li><strong>Visual Ambiance Gallery</strong> with touch Lightbox controls.</li>
+        <li><strong>"Submit Photo" CTA</strong> to boost social media reviews.</li>
+        <li><strong>Opening Hours Highlighter</strong> dynamically showing today's hours.</li>
+        <li><strong>Map coordinates frame</strong> with integrated driving directions.</li>
+        <li><strong>Copy-to-clipboard address</strong> and click-to-call tel triggers.</li>
+        <li><strong>Special Offers tiles</strong> for Happy Hours and catering banquets.</li>
+        <li><strong>Local Storage subscriptions</strong> for email newsletters.</li>
+        <li><strong>Sticky header navigation</strong> with mobile hamburger drawers.</li>
+        <li><strong>Pulsing WhatsAppFAB</strong> on all page footers.</li>
+        <li><strong>Back-to-top scrolling</strong> utility past 400px.</li>
+        <li><strong>Session-aware loading spinner</strong> overlay.</li>
+        <li><strong>JSON-LD LocalBusiness</strong> Structured SEO Schema.</li>
+        <li><strong>XML Sitemap and Robots.txt</strong> rules configured.</li>
+        <li><strong>Keyboard focus outlines</strong> and high contrast accessibility.</li>
+      </ul>
+
+      <div class="pricing-box">
+        <div class="price-tag">₹50,000</div>
+        <div class="price-term">One-Time Setup Fee</div>
+        <div class="price-details">Includes all design, development, content extraction, and deployment. Plus ₹3,000/year for hosting renewal.</div>
+      </div>
+
+      <h2><span class="accent-line"></span> High-Value Upsell Options</h2>
+      <div class="upsells">
+        <div class="upsell-card">
+          <h4>Google Local Ads Booster</h4>
+          <div class="upsell-price">₹10,000 Setup & Opt.</div>
+          <p>Get listed at the very top of Google Maps search terms for local food terms in your region.</p>
+        </div>
+        <div class="upsell-card">
+          <h4>Social Media Content Kit</h4>
+          <div class="upsell-price">₹5,000 / Month</div>
+          <p>Monthly high-quality food photography and story templates tailored for Instagram reels and grids.</p>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p>"The direct WhatsApp ordering cart has saved us thousands in commissions in the first month itself. Our customers love the river view photos and the simple booking process!"</p>
+        <cite>— Mr. Adnan, Manager, Meydani Cafe</cite>
+      </div>
+
+      <a href="https://wa.me/917780938743?text=Hi!%20I'm%20interested%20in%20a%20premium%20restaurant%20website%20solution%20similar%20to%20Meydani%20Cafe." class="btn-whatsapp" target="_blank">
+        <svg viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.97-1.861-1.867-4.333-2.897-6.966-2.897-5.442 0-9.87 4.37-9.875 9.799-.001 1.77.476 3.5 1.381 5.008L1.763 22.2l4.884-1.285zM16.29 14.83c-.23-.115-1.364-.672-1.574-.749-.21-.077-.36-.115-.51.115-.15.23-.58.749-.71.9-.13.152-.26.17-.49.055-.23-.115-.972-.359-1.853-1.144-.684-.61-1.147-1.365-1.28-1.595-.13-.23-.01-.35.1-.466.1-.1.23-.268.346-.4.115-.13.153-.22.23-.365.077-.15.039-.28-.019-.395-.058-.115-.51-1.23-.7-1.685-.18-.44-.36-.38-.51-.38h-.44c-.15 0-.395.056-.6.28-.21.226-.8.78-.8 1.9 0 1.12.82 2.2 1.93 2.35.115.015 1.62 2.48 3.927 3.48.55.238 1.079.39 1.448.51.562.18 1.077.15 1.484.09.45-.067 1.36-.557 1.554-1.096.195-.54.195-1 .138-1.095-.057-.1-.21-.15-.44-.265z"/>
+        </svg>
+        Inquire Web Accelerator Solution
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
