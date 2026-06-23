@@ -1,0 +1,382 @@
+{
+  "restaurant": {
+    "name": "Meydani Cafe",
+    "tagline": "A Taste of Turkey on the Banks of Jhelum",
+    "cuisines": [
+      "Turkish",
+      "Middle Eastern",
+      "Continental",
+      "Chinese",
+      "Fast Food",
+      "Beverages"
+    ],
+    "specialtyDishes": [
+      "Adana Kabab",
+      "Chicken Blast",
+      "Hummus with Pita",
+      "Mutton Uzbeki Pulao",
+      "Kunafa",
+      "Turkish Pizza",
+      "White Sauce Chicken Pasta"
+    ],
+    "address": {
+      "street": "The Bund Road, Residency Road",
+      "landmark": "Near Chai Jai, Poloview",
+      "city": "Srinagar",
+      "state": "Jammu and Kashmir",
+      "pinCode": "190001",
+      "fullAddress": "The Bund Road, Residency Road, near Chai Jai, Poloview, Srinagar, Jammu and Kashmir 190001"
+    },
+    "contact": {
+      "phone": "+918899058697",
+      "whatsApp": "+917780938743",
+      "instagram": "https://www.instagram.com/meydani_cafe1/?hl=en",
+      "facebook": "https://www.facebook.com/meydanicafe1"
+    },
+    "orderingPlatforms": {
+      "zomato": "https://www.zomato.com/srinagar/meydani-cafe-dal-gate",
+      "swiggy": "https://www.swiggy.com/city/srinagar/meydani-cafe-the-bund-road-residency-road-rest923343"
+    },
+    "ratings": {
+      "google": {
+        "rating": 4.7,
+        "reviewsCount": 1325
+      },
+      "zomato": {
+        "deliveryRating": 4.2,
+        "deliveryCount": 46,
+        "diningRating": null,
+        "diningCount": 0
+      }
+    },
+    "costForTwo": {
+      "average": 800,
+      "currency": "INR"
+    },
+    "openingHours": {
+      "monday": "10:00 AM - 9:00 PM",
+      "tuesday": "10:00 AM - 9:00 PM",
+      "wednesday": "10:00 AM - 9:00 PM",
+      "thursday": "10:00 AM - 9:00 PM",
+      "friday": "10:00 AM - 9:00 PM",
+      "saturday": "10:00 AM - 9:30 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "amenities": [
+      "Air Conditioning (AC)",
+      "Free WiFi",
+      "Indoor Seating",
+      "Riverside View (Jhelum banks)",
+      "Takeaway Available",
+      "Home Delivery",
+      "Soothing Background Music",
+      "Valet/Nearby Parking",
+      "Women-owned Business"
+    ],
+    "highlights": [
+      "Authentic Turkish & Middle Eastern grill specials",
+      "Charming riverside ambiance overlooking the Jhelum River",
+      "Known for quick, courteous hospitality by Adnan, Tariq, and team",
+      "Beautifully enriched, clean, cozy interior decor",
+      "Generous portion sizes offering excellent value for money"
+    ],
+    "ambiancePhotosDescription": "The cafe features a beautifully decorated, cozy Middle Eastern-themed interior with elegant lighting, comfortable seating arrangements, and clean, modern aesthetics. Large windows provide stunning scenic views of the Jhelum River banks. The vibe is warm, inviting, and complemented by soft, soothing background music.",
+    "menu": [
+      {
+        "category": "Starters & Mezze",
+        "items": [
+          {
+            "name": "Beyti Kabab",
+            "price": 549,
+            "description": "Ground lamb or beef, grilled on a skewer and served wrapped in a lavash and topped with tomato sauce and yogurt.",
+            "type": "Non-Veg",
+            "tags": ["Bestseller", "Must-try"]
+          },
+          {
+            "name": "Chicken Turkish Kabab (2 Pcs)",
+            "price": 299,
+            "description": "Perfectly spiced minced chicken skewers grilled over hot charcoal, bursting with authentic Turkish flavors.",
+            "type": "Non-Veg",
+            "tags": ["Must-try"]
+          },
+          {
+            "name": "Hummus With Pita Bread",
+            "price": 349,
+            "description": "Creamy, smooth blend of chickpeas, tahini, olive oil, and garlic served with warm, freshly baked pita bread.",
+            "type": "Veg",
+            "tags": ["Bestseller"]
+          },
+          {
+            "name": "Romali Roti",
+            "price": 55,
+            "description": "Super thin, soft, and hand-stretched flatbread, perfect to wrap around juicy grilled kebabs.",
+            "type": "Veg",
+            "tags": []
+          }
+        ]
+      },
+      {
+        "category": "Grill & Kabab Specials",
+        "items": [
+          {
+            "name": "Chicken Shish Tawook (4 Skewers)",
+            "price": 399,
+            "description": "Tender cubes of chicken breast marinated in yogurt, lemon, and garlic, grilled to juicy perfection.",
+            "type": "Non-Veg",
+            "tags": ["Must-try"]
+          },
+          {
+            "name": "Lamb Chops (4 Pcs)",
+            "price": 599,
+            "description": "Premium lamb chops marinated in a special blend of Turkish herbs and olive oil, char-grilled to order.",
+            "type": "Non-Veg",
+            "tags": ["Bestseller"]
+          },
+          {
+            "name": "Mix Kabab Platter",
+            "price": 799,
+            "description": "A grand platter featuring 4 pcs Turkish Kabab, 4 pcs Adana Kabab, and 4 pcs Chicken Kabab, served with Romali Roti and dip.",
+            "type": "Non-Veg",
+            "tags": ["Bestseller", "Must-try"]
+          }
+        ]
+      },
+      {
+        "category": "Shawarma & Street Bites",
+        "items": [
+          {
+            "name": "Beef Burger With Fries",
+            "price": 249,
+            "description": "Juicy, grilled minced beef patty inside a toasted bun with fresh lettuce, tomatoes, cheese, and house sauce, served with crispy fries.",
+            "type": "Non-Veg",
+            "tags": []
+          },
+          {
+            "name": "Chicken Blast",
+            "price": 299,
+            "description": "A crispy, deep-fried double chicken fillet burger loaded with spicy mayo, cheese slice, and fresh veggies.",
+            "type": "Non-Veg",
+            "tags": ["Bestseller"]
+          },
+          {
+            "name": "Meydani Chicken Shawarma",
+            "price": 179,
+            "description": "Slow-roasted marinated chicken shavings wrapped in fresh pita with garlic paste, pickles, and crispy fries.",
+            "type": "Non-Veg",
+            "tags": ["Bestseller", "Must-try"]
+          },
+          {
+            "name": "Shawarma Combo",
+            "price": 249,
+            "description": "Our signature Meydani Chicken Shawarma served alongside a chilled Mountain Dew and extra garlic garlic dip.",
+            "type": "Non-Veg",
+            "tags": []
+          }
+        ]
+      },
+      {
+        "category": "Regional Delicacies",
+        "items": [
+          {
+            "name": "Butter Chicken (half)",
+            "price": 349,
+            "description": "Tender chicken pieces cooked in a rich, velvety, mildly sweet tomato and butter gravy finished with fresh cream.",
+            "type": "Non-Veg",
+            "tags": []
+          },
+          {
+            "name": "Chicken Kanti (boneless-full)",
+            "price": 449,
+            "description": "Traditional Kashmiri style stir-fried boneless chicken cubes with sliced onions, tomatoes, and green chilies.",
+            "type": "Non-Veg",
+            "tags": ["Must-try"]
+          },
+          {
+            "name": "Mutton Kanti",
+            "price": 549,
+            "description": "Spicy and dry mutton cubes pan-fried with onions, tomatoes, and aromatic Kashmiri spices.",
+            "type": "Non-Veg",
+            "tags": []
+          },
+          {
+            "name": "Mutton Korma (half)",
+            "price": 499,
+            "description": "Slow-cooked tender mutton cooked in a rich onion-based gravy flavored with saffron and green cardamom.",
+            "type": "Non-Veg",
+            "tags": []
+          }
+        ]
+      },
+      {
+        "category": "Rice & Signature Platters",
+        "items": [
+          {
+            "name": "Chicken Biryani",
+            "price": 299,
+            "description": "Aromatic Basmati rice layered with marinated chicken, saffron, and fresh herbs, cooked on dum.",
+            "type": "Non-Veg",
+            "tags": []
+          },
+          {
+            "name": "Mutton Uzbeki Pulao",
+            "price": 599,
+            "description": "Fragrant long-grain rice cooked in mutton broth with carrots, raisins, and chick peas, topped with tender mutton pieces.",
+            "type": "Non-Veg",
+            "tags": ["Must-try"]
+          },
+          {
+            "name": "Uzbeki Platter",
+            "price": 1299,
+            "description": "A massive feast of Uzbeki Pulao, 4 pcs Lamb Chops, 2 pcs Turkish Kabab, and 2 soft drinks.",
+            "type": "Non-Veg",
+            "tags": ["Bestseller", "Must-try"]
+          }
+        ]
+      },
+      {
+        "category": "Continental & Fusion",
+        "items": [
+          {
+            "name": "Red Chicken Penne Pasta",
+            "price": 299,
+            "description": "Penne pasta and tender chicken tossed in a spicy, robust tomato marinara sauce garnished with parmesan cheese.",
+            "type": "Non-Veg",
+            "tags": []
+          },
+          {
+            "name": "Turkish Pizza",
+            "price": 349,
+            "description": "A thin, crispy flatbread (Lahmacun) topped with a minced chicken mixture, vegetables, herbs, and lemon juice.",
+            "type": "Non-Veg",
+            "tags": ["Must-try"]
+          },
+          {
+            "name": "Veg Red Penne Pasta",
+            "price": 249,
+            "description": "Penne pasta tossed in a rich, tangy red sauce with mixed garden vegetables like bell peppers, olives, and baby corn.",
+            "type": "Veg",
+            "tags": []
+          },
+          {
+            "name": "Veg White Sauce Penne Pasta",
+            "price": 249,
+            "description": "Penne pasta cooked in a creamy, velvety cheese sauce with fresh mushrooms, broccoli, and sweet corn.",
+            "type": "Veg",
+            "tags": []
+          },
+          {
+            "name": "White Sauce Chicken Penne Pasta",
+            "price": 299,
+            "description": "Rich and creamy penne pasta tossed in a garlic-flavored alfredo sauce with pan-seared chicken and herbs.",
+            "type": "Non-Veg",
+            "tags": ["Bestseller"]
+          }
+        ]
+      },
+      {
+        "category": "Cool Refreshments",
+        "items": [
+          {
+            "name": "Mint Mojito",
+            "price": 129,
+            "description": "A refreshing blend of fresh mint leaves, lime juice, sugar syrup, and soda served over crushed ice.",
+            "type": "Veg",
+            "tags": []
+          },
+          {
+            "name": "Strawberry Mojito",
+            "price": 139,
+            "description": "Sweet strawberries muddled with fresh mint and lime, topped with soda for a fruity fizz.",
+            "type": "Veg",
+            "tags": []
+          },
+          {
+            "name": "Watermelon Mojito",
+            "price": 139,
+            "description": "Fresh watermelon chunks and mint leaves crushed with lime juice, served chilled with soda.",
+            "type": "Veg",
+            "tags": []
+          }
+        ]
+      },
+      {
+        "category": "Desserts",
+        "items": [
+          {
+            "name": "Baked Stuffed Apricot",
+            "price": 199,
+            "description": "Soft baked sweet apricots stuffed with almond paste and fresh cream, a local and Middle Eastern fusion dessert.",
+            "type": "Veg",
+            "tags": []
+          },
+          {
+            "name": "Chocolate Brownie",
+            "price": 149,
+            "description": "Warm, fudgy chocolate brownie loaded with chocolate chips and served with chocolate sauce.",
+            "type": "Veg",
+            "tags": []
+          },
+          {
+            "name": "Kunafa",
+            "price": 249,
+            "description": "Traditional Middle Eastern dessert made with thin noodle-like pastry, soaked in sweet sugar-based syrup, and layered with cheese.",
+            "type": "Veg",
+            "tags": ["Bestseller", "Must-try"]
+          }
+        ]
+      }
+    ],
+    "reviews": [
+      "Awesome service at Meydani Cafe, especially by Mr. Adnan, who was extremely courteous and attentive throughout our visit. The hospitality truly stood out and made the experience even more enjoyable.",
+      "The food was exceptional—not only did it taste amazing, but the presentation was also beautiful. Highly recommended!",
+      "I had a fantastic experience at Meydani Cafe! The atmosphere is wonderful, featuring a beautifully enriched interior, and the whole place is kept exceptionally clean.",
+      "The food was delicious and very reasonably priced. I ordered the chicken shawarma and it was superb.",
+      "We had a wonderful time at Meydani Cafe. Located beautifully by Jhelum banks, this is a must visit for any foodie.",
+      "Great food, great ambience and super staff. Thanks especially to Mr Tariq for the Turkmeeri platter recommendation and for ensuring we had a great service.",
+      "Nice ambience. Excellent choice of soothing music. Tasty food.",
+      "Best service and very kind staff and special chef and manager.",
+      "Must try the new menu 'turkish chicken ' Best in all terms ..love this place.",
+      "The Kunafa here is absolutely to die for! The best I have had in Srinagar, served warm with the perfect amount of syrup.",
+      "Hummus with Pita bread is extremely authentic. Perfect texture and flavour.",
+      "Adana Kabab is highly recommended. It was cooked to perfection, juicy and full of Middle Eastern spices.",
+      "If you are in Polo View, Meydani Cafe is the perfect place to sit back, enjoy a cup of coffee or a mojito, and look at the Jhelum.",
+      "Amazing Turkish pizza, very unique flavor and fresh crust.",
+      "The chicken blast burger is literally a blast of flavors! Highly recommend it to fast food lovers.",
+      "Mutton Uzbeki Pulao was very flavorful and aromatic. The mutton was tender and falling off the bone.",
+      "The staff's hospitality is extremely nice. They treat you like family.",
+      "A very cozy and clean place. Ideal for families and couples alike.",
+      "White Sauce Chicken Penne Pasta was rich, creamy, and loaded with perfectly cooked chicken.",
+      "Great portion sizes. The Mix Kabab Platter easily feeds three people and is worth every rupee.",
+      "Meydani Cafe has become my go-to spot in Srinagar. Excellent hospitality and consistently great food.",
+      "The Blue Lagoon Mojito was extremely refreshing, perfect for a warm afternoon.",
+      "Loved the Turkish Shish Tawook. The skewers were perfectly charred and juicy.",
+      "Excellent location right on The Bund Road. The view of the river makes the dining experience special.",
+      "Highly impressed with the cleanliness and hygiene standards here.",
+      "The baked stuffed apricot is a delightful dessert, not too sweet but very rich.",
+      "Courteous staff, quick service, and mouthwatering food. What else could you ask for?",
+      "Mutton Kanti was spicy and delicious, went perfectly with the Rumali Roti.",
+      "One of the best cafes in Srinagar for Middle Eastern food. The flavors are spot on.",
+      "The hospitality of Mr. Adnan was top-notch. He made sure we felt welcomed and comfortable.",
+      "A beautiful blend of Turkish and Continental cuisines. Truly a gem in Polo View.",
+      "The chocolate brownie was warm and fudgy, a perfect ending to our meal.",
+      "Everything from the starters to the desserts was top tier. Will definitely visit again.",
+      "A must-visit cafe in Srinagar. The ambiance is so cozy and photogenic.",
+      "Chicken Kanti boneless was superb. The chicken was incredibly tender and spicy.",
+      "The Uzbeki Platter is a massive feast! Perfect for a group dinner.",
+      "Prompt service even during peak hours. The staff is well-trained and polite.",
+      "A very peaceful place to have lunch. The river view adds a calm vibe.",
+      "Hummus was smooth and creamy, just the way it should be.",
+      "I highly recommend the Mint Mojito. It's the best refresher after a long walk around Polo View.",
+      "Loved the Lamb Chops! Very tender and marinated with authentic Turkish spices.",
+      "Their Shawarma Combo is excellent value for money. Comes with a drink and a dip.",
+      "A very clean and well-maintained restaurant. The decor is beautiful.",
+      "The Butter Chicken was rich and creamy. Went great with the Romali Roti.",
+      "Turkish Pizza is a unique offering in Srinagar, and Meydani Cafe does it best.",
+      "The music selection is very soothing and adds to the cozy dining experience.",
+      "Outstanding service and delicious food. Meydani Cafe never disappoints.",
+      "The Turkish Kababs are the best I've had outside Turkey. Very authentic.",
+      "Cozy seating, friendly staff, and delicious Middle Eastern flavors. Highly recommended.",
+      "A delightful cafe with a gorgeous view of the Jhelum. The food is exceptionally tasty."
+    ]
+  }
+}

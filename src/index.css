@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  
+  --color-charcoal: #141313;
+  --color-surface: #1e1e1e;
+  --color-surface-dim: #181717;
+  --color-surface-bright: #3a3939;
+  --color-amber-gold: #ffbf00;
+  --color-amber-dark: #402d00;
+  --color-warm-white: #c8c6c5;
+  --color-warm-gray: #e5e2e1;
+  --color-text-muted: #8e9192;
+  --color-border-subtle: #2d2b2b;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #141313;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d2b2b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffbf00;
+}
+
+/* Marquee scrolling animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Accessibility Focus Styles */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #ffbf00 !important;
+  outline-offset: 2px !important;
+}
