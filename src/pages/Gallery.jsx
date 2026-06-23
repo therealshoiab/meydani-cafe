@@ -23,7 +23,7 @@ export default function Gallery() {
 
   const getEmbedUrl = (link) => {
     const match = link.match(/\/(p|reel|tv)\/([A-Za-z0-9_-]+)/);
-    return match ? `https://www.instagram.com/${match[1]}/${match[2]}/embed/` : null;
+    return match ? `https://www.instagram.com/p/${match[2]}/embed/` : null;
   };
 
   return (
@@ -95,7 +95,8 @@ export default function Gallery() {
                     className="w-full h-full border-0 absolute inset-0"
                     scrolling="no"
                     allowtransparency="true"
-                    allow="encrypted-media"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    allowFullScreen={true}
                     loading="lazy"
                     title={photo.label}
                   />

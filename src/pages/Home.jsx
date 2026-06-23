@@ -466,7 +466,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="px-5 py-2.5 rounded-lg border border-[#3a3939] text-[#c8c6c5] hover:text-[#ffbf00] hover:border-[#ffbf00] text-xs font-semibold uppercase tracking-wider transition-all duration-200"
             >
-              @meydani_cafe1
+              @meydani-cafe1
             </a>
           </div>
 
@@ -478,7 +478,7 @@ export default function Home() {
               { label: "Authentic Turkish Flavors", link: "https://www.instagram.com/meydani_cafe1/reel/DWsuULoDkCW/?hl=en" }
             ].map((tile, i) => {
               const match = tile.link.match(/\/(p|reel|tv)\/([A-Za-z0-9_-]+)/);
-              const embedUrl = match ? `https://www.instagram.com/${match[1]}/${match[2]}/embed/` : null;
+              const embedUrl = match ? `https://www.instagram.com/p/${match[2]}/embed/` : null;
               return (
                 <div 
                   key={i} 
@@ -490,7 +490,8 @@ export default function Home() {
                       className="w-full h-full border-0 absolute inset-0"
                       scrolling="no"
                       allowtransparency="true"
-                      allow="encrypted-media"
+                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      allowFullScreen={true}
                       loading="lazy"
                       title={tile.label}
                     />
