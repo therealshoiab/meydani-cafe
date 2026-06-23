@@ -19,7 +19,7 @@ We are pleased to hand over the complete, premium, responsive website developed 
 - Quick Info strip showing opening hours, location landmarks, and click-to-call direct phone triggers.
 - Signature Dishes showcase containing bestseller tags, direct WhatsApp order links, and quick order links for Zomato and Swiggy.
 - Infinite scrolling Reviews marquee featuring verified client quotes.
-- Instagram gallery grid displaying 6 real posts/reels linking directly to your Instagram profile.
+- Instagram strip displaying 3 real, playable video reels embedded directly on the page.
 
 ### Page 2: Interactive Menu
 - Real-time search bar and filter chips (All, Veg, Non-Veg, and categories).
@@ -28,8 +28,9 @@ We are pleased to hand over the complete, premium, responsive website developed 
 - Checkout system featuring WhatsApp checkout (green branding), Zomato (red branding), and Swiggy (orange branding) direct order buttons.
 
 ### Page 3: Photo Gallery
-- Grid displaying Ambiance, Food, and Reels categories loaded with 72 actual Instagram posts/reels.
-- Immersive Lightbox overlay showing full-screen views with Instagram post mock previews and a "Watch on Instagram" direct CTA.
+- Grid displaying Ambiance, Food, and Reels categories loaded with 72 actual Instagram posts/reels playing directly on the page.
+- Direct quick-link to open any post or reel in Instagram.
+- "Load More" paginated performance control loading 12 items at a time to ensure lightning-fast initial page speed.
 - Share CTA linking directly to your Instagram profile.
 
 ### Page 4: Table Reservations
