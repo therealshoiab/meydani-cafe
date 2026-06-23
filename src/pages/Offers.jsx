@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Gift, Coffee, Compass, Check, Calendar, ArrowRight, MessageSquare, Send, Sparkles } from 'lucide-react';
+import { Gift, Coffee, Compass, Calendar, ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 
 const promos = [
@@ -28,23 +28,6 @@ const promos = [
 ];
 
 export default function Offers() {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (!email) return;
-
-    // Retrieve existing email lists
-    const existing = JSON.parse(localStorage.getItem('meydani_subscribers') || '[]');
-    if (!existing.includes(email)) {
-      existing.push(email);
-      localStorage.setItem('meydani_subscribers', JSON.stringify(existing));
-    }
-    setSubscribed(true);
-    setEmail('');
-  };
-
   const handleCateringCta = () => {
     const text = encodeURIComponent("Hi Meydani Cafe! I would like to inquire about bulk ordering/catering services for an event.");
     const whatsappNumber = '917780938743';
@@ -56,7 +39,7 @@ export default function Offers() {
     <div className="bg-[#141313] min-h-screen pt-28 pb-20 px-6">
       <SEOHead 
         title="Special Offers & Events" 
-        description="Explore exclusive dining discounts, happy hour deals, and weekend banquet specials at Meydani Cafe, Srinagar. Sign up for our newsletter."
+        description="Explore exclusive dining discounts, happy hour deals, and weekend banquet specials at Meydani Cafe, Srinagar."
         path="/offers"
       />
 
@@ -137,45 +120,6 @@ export default function Offers() {
               Inquire Catering via WhatsApp
             </button>
           </div>
-        </section>
-
-        {/* Newsletter Block */}
-        <section className="py-16 text-center max-w-[600px] mx-auto space-y-6">
-          <div className="space-y-2">
-            <h3 className="font-display text-2xl font-bold text-[#c8c6c5]">Join The Meydani Club</h3>
-            <p className="text-xs text-[#8e9192] leading-relaxed">
-              Subscribe to receive updates about monthly music events, chef's additions, and members-only weekend discount codes.
-            </p>
-          </div>
-
-          {subscribed ? (
-            <motion.div 
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="p-4 bg-green-950/20 border border-green-500/30 rounded-lg text-xs text-green-400 flex items-center justify-center gap-2"
-            >
-              <Check className="w-4 h-4" />
-              Subscription successful! Welcome to Meydani Cafe newsletter list.
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                required
-                placeholder="Enter your email address..."
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 bg-[#1e1e1e] border border-[#2d2b2b] focus:border-[#ffbf00] rounded-lg text-sm text-[#c8c6c5] placeholder-[#8e9192] outline-none transition-colors"
-              />
-              <button
-                type="submit"
-                className="py-3 px-6 bg-[#ffbf00] hover:bg-[#ffbf00]/90 text-[#402d00] rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors pointer-events-auto"
-              >
-                <Send className="w-3.5 h-3.5" />
-                Subscribe
-              </button>
-            </form>
-          )}
         </section>
       </div>
     </div>

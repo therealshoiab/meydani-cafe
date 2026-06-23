@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, UtensilsCrossed } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logo from '../assets/logo.png';
 
 const links = [
   { name: 'Home', path: '/' },
@@ -46,8 +47,8 @@ export default function Navbar() {
       >
         <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <UtensilsCrossed className="w-6 h-6 text-[#ffbf00] group-hover:rotate-12 transition-transform duration-300" />
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <img src={logo} alt="Meydani Cafe Logo" className="w-9 h-9 object-contain rounded-full bg-[#1e1e1e] p-0.5 border border-[#ffbf00]/30 transition-transform duration-300 group-hover:scale-105" />
             <span className="font-display text-xl font-bold tracking-wider text-[#c8c6c5] group-hover:text-[#ffbf00] transition-colors">
               MEYDANI
             </span>

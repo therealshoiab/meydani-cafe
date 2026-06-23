@@ -232,14 +232,32 @@ export default function Menu() {
                   </div>
 
                   {/* Add button */}
-                  <div className="pt-6">
+                  <div className="pt-4 space-y-2">
                     <button
                       onClick={() => addToCart(item)}
-                      className="w-full py-3 rounded-lg border border-[#3a3939] hover:bg-[#ffbf00] hover:text-[#402d00] hover:border-[#ffbf00] text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 pointer-events-auto min-h-[44px]"
+                      className="w-full py-2.5 rounded-lg border border-[#ffbf00]/30 hover:bg-[#ffbf00] hover:text-[#402d00] text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 pointer-events-auto min-h-[44px]"
                     >
                       <Plus className="w-4 h-4" />
                       Add to WhatsApp Order
                     </button>
+                    <div className="grid grid-cols-2 gap-2">
+                      <a
+                        href="https://www.zomato.com/srinagar/meydani-cafe-dal-gate"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-2 rounded-lg bg-[#E23744]/10 border border-[#E23744]/25 text-[#E23744] hover:bg-[#E23744] hover:text-white text-[10px] font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1 transition-all duration-200 min-h-[36px]"
+                      >
+                        Zomato
+                      </a>
+                      <a
+                        href="https://www.swiggy.com/city/srinagar/meydani-cafe-the-bund-road-residency-road-rest923343"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-2 rounded-lg bg-[#FC8019]/10 border border-[#FC8019]/25 text-[#FC8019] hover:bg-[#FC8019] hover:text-white text-[10px] font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1 transition-all duration-200 min-h-[36px]"
+                      >
+                        Swiggy
+                      </a>
+                    </div>
                   </div>
                 </motion.div>
               ))
@@ -368,14 +386,34 @@ export default function Menu() {
                   <span>Calculated on Chat</span>
                 </div>
 
-                <div className="space-y-2">
+                 <div className="space-y-3">
                   <button
                     onClick={handleCheckout}
-                    className="w-full py-3.5 rounded-lg bg-[#ffbf00] text-[#402d00] text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-[#ffbf00]/95 transition-colors shadow-lg shadow-[#ffbf00]/10"
+                    className="w-full py-3.5 rounded-lg bg-[#25D366] text-white text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-[#25D366]/90 transition-colors shadow-lg shadow-[#25D366]/10"
                   >
-                    <MessageSquare className="w-4 h-4 fill-[#402d00] text-[#ffbf00]" />
+                    <MessageSquare className="w-4 h-4 fill-white text-[#25D366]" />
                     Checkout to WhatsApp (₹{totalCartPrice})
                   </button>
+                  
+                  <div className="grid grid-cols-2 gap-2">
+                    <a
+                      href="https://www.zomato.com/srinagar/meydani-cafe-dal-gate"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-3 rounded-lg bg-[#E23744] hover:bg-[#cb202d] text-white text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1.5 transition-colors shadow-md shadow-[#E23744]/15"
+                    >
+                      Zomato Order
+                    </a>
+                    <a
+                      href="https://www.swiggy.com/city/srinagar/meydani-cafe-the-bund-road-residency-road-rest923343"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-3 rounded-lg bg-[#FC8019] hover:bg-[#e67316] text-white text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1.5 transition-colors shadow-md shadow-[#FC8019]/15"
+                    >
+                      Swiggy Order
+                    </a>
+                  </div>
+
                   <button
                     onClick={clearCart}
                     className="w-full py-2.5 rounded-lg border border-[#3a3939] hover:bg-red-950/20 hover:text-red-400 hover:border-red-500/20 text-xs font-semibold uppercase tracking-wider transition-all duration-200"

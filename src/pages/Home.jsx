@@ -230,15 +230,35 @@ export default function Home() {
                   <p className="text-xs text-[#8e9192] leading-relaxed line-clamp-3">{dish.description}</p>
                 </div>
 
-                <a
-                  href={makeWhatsAppUrl(dish.name)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-2.5 rounded-lg bg-[#2d2b2b] text-[#c8c6c5] group-hover:bg-[#ffbf00] group-hover:text-[#402d00] text-xs font-semibold uppercase tracking-wider text-center flex items-center justify-center gap-2 transition-all duration-300"
-                >
-                  <MessageSquare className="w-4 h-4 shrink-0" />
-                  Order on WhatsApp
-                </a>
+                <div className="space-y-2">
+                  <a
+                    href={makeWhatsAppUrl(dish.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-lg bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366] hover:text-white text-xs font-semibold uppercase tracking-wider text-center flex items-center justify-center gap-2 transition-all duration-300"
+                  >
+                    <MessageSquare className="w-4 h-4 shrink-0" />
+                    Order on WhatsApp
+                  </a>
+                  <div className="grid grid-cols-2 gap-2">
+                    <a
+                      href="https://www.zomato.com/srinagar/meydani-cafe-dal-gate"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2 rounded-lg bg-[#E23744]/10 border border-[#E23744]/30 text-[#E23744] hover:bg-[#E23744] hover:text-white text-[10px] font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1 transition-all duration-200"
+                    >
+                      Zomato
+                    </a>
+                    <a
+                      href="https://www.swiggy.com/city/srinagar/meydani-cafe-the-bund-road-residency-road-rest923343"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2 rounded-lg bg-[#FC8019]/10 border border-[#FC8019]/30 text-[#FC8019] hover:bg-[#FC8019] hover:text-white text-[10px] font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1 transition-all duration-200"
+                    >
+                      Swiggy
+                    </a>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -453,15 +473,15 @@ export default function Home() {
           {/* 6 Photo Grid Placeholders with premium overlays */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
-              { label: "Hummus Dip", grad: "from-[#2b1010] to-[#502818]" },
-              { label: "River Deck", grad: "from-[#10202b] to-[#1a384f]" },
-              { label: "Shish Tawook", grad: "from-[#281810] to-[#4c2d1b]" },
-              { label: "Turkish Tea", grad: "from-[#2b1020] to-[#501a38]" },
-              { label: "Cozy Dining", grad: "from-[#1a102b] to-[#341d50]" },
-              { label: "Kunafa Plate", grad: "from-[#2b2b10] to-[#4f4f1a]" }
+              { label: "Hummus Dip", grad: "from-[#2b1010] to-[#502818]", link: "https://www.instagram.com/meydani_cafe1/reel/DZjfw6IOK92/?hl=en" },
+              { label: "River Deck", grad: "from-[#10202b] to-[#1a384f]", link: "https://www.instagram.com/mubashirkashmirii/reel/DYCWrvWpe5w/?hl=en" },
+              { label: "Shish Tawook", grad: "from-[#281810] to-[#4c2d1b]", link: "https://www.instagram.com/meydani_cafe1/reel/DWsuULoDkCW/?hl=en" },
+              { label: "Turkish Tea", grad: "from-[#2b1020] to-[#501a38]", link: "https://www.instagram.com/nexgen.marketting/reel/DZhtId9JvDx/?hl=en" },
+              { label: "Cozy Dining", grad: "from-[#1a102b] to-[#341d50]", link: "https://www.instagram.com/meydani_cafe1/reel/DZBuQ53OlwQ/?hl=en" },
+              { label: "Kunafa Plate", grad: "from-[#2b2b10] to-[#4f4f1a]", link: "https://www.instagram.com/meydani_cafe1/reel/DYrajFsMmse/?hl=en" }
             ].map((tile, i) => (
               <a 
-                href="https://www.instagram.com/meydani_cafe1/?hl=en"
+                href={tile.link}
                 key={i} 
                 target="_blank"
                 rel="noopener noreferrer"

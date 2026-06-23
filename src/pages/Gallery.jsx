@@ -1,25 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, X, ChevronLeft, ChevronRight, Share2 } from 'lucide-react';
+import { Camera, X, ChevronLeft, ChevronRight, Share2, Instagram } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
-
-const galleryItems = [
-  { id: 1, category: "Food", label: "Turkish Shish Tawook", grad: "from-[#2b1010] to-[#502818]", span: "row-span-2 col-span-1" },
-  { id: 2, category: "Ambiance", label: "Scenic Jhelum Riverside View", grad: "from-[#10202b] to-[#1a384f]", span: "row-span-1 col-span-1" },
-  { id: 3, category: "Food", label: "Creamy Hummus Mezze", grad: "from-[#2d2a1a] to-[#5c5636]", span: "row-span-1 col-span-1" },
-  { id: 4, category: "Events", label: "Sufi Music Performance Night", grad: "from-[#18102b] to-[#361e5c]", span: "row-span-2 col-span-2" },
-  { id: 5, category: "Food", label: "Sweet Hot Baked Kunafa", grad: "from-[#2e1d10] to-[#5c3e21]", span: "row-span-1 col-span-1" },
-  { id: 6, category: "Ambiance", label: "Cozy Turkish Lantern Lighting", grad: "from-[#2d1c1a] to-[#5c2a26]", span: "row-span-1 col-span-1" },
-  { id: 7, category: "Events", label: "Riverside Corporate Gathering", grad: "from-[#10261f] to-[#1c4d3e]", span: "row-span-1 col-span-1" },
-  { id: 8, category: "Food", label: "Juicy Chargrilled Adana Skewers", grad: "from-[#2e1010] to-[#5c1c1c]", span: "row-span-2 col-span-1" },
-  { id: 9, category: "Ambiance", label: "Enriched Turkish Decor Interiors", grad: "from-[#1f102b] to-[#401c5c]", span: "row-span-1 col-span-2" }
-];
+import galleryItems from '../data/gallery-data.json';
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activePhoto, setActivePhoto] = useState(null); // stores index in current filtered list
 
-  const categories = ['All', 'Food', 'Ambiance', 'Events'];
+  const categories = ['All', 'Food', 'Ambiance', 'Reels'];
 
   const filteredPhotos = galleryItems.filter(item => 
     selectedCategory === 'All' || item.category === selectedCategory
@@ -179,19 +168,44 @@ export default function Gallery() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="w-full max-w-3xl h-[50vh] sm:h-[60vh] rounded-2xl border border-[#2d2b2b] relative overflow-hidden flex items-center justify-center shadow-2xl"
+                className="w-full max-w-xl h-[450px] rounded-2xl border border-[#2d2b2b] relative overflow-hidden flex flex-col justify-between p-8 bg-[#1e1e1e] shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${filteredPhotos[activePhoto].grad} opacity-95`} />
-                <div className="absolute inset-0 bg-black/30" />
-                <div className="relative z-10 text-center space-y-4 px-6">
-                  <Camera className="w-12 h-12 text-[#ffbf00] mx-auto opacity-40 stroke-[1]" />
-                  <p className="text-sm text-[#8e9192] italic">
-                    Camera asset loading: {filteredPhotos[activePhoto].label}
-                  </p>
-                  <p className="text-xs text-[#ffbf00] uppercase tracking-wider font-semibold">
-                    Meydani Cafe Srinagar
-                  </p>
+                {/* Decorative background glow */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${filteredPhotos[activePhoto].grad} opacity-5 blur-2xl pointer-events-none`} />
+                
+                {/* Header */}
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] flex items-center justify-center text-white">
+                    <Instagram className="w-5 h-5" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm font-bold text-[#c8c6c5]">meydani_cafe1</p>
+                    <p className="text-[10px] text-[#ffbf00] uppercase tracking-wider font-semibold">Srinagar, J&K</p>
+                  </div>
+                </div>
+
+                {/* Content Body */}
+                <div className="my-auto py-6 text-center space-y-4">
+                  <Instagram className="w-16 h-16 text-[#ffbf00] mx-auto stroke-[1] opacity-75" />
+                  <div className="space-y-2">
+                    <h4 className="font-display text-xl font-bold text-[#c8c6c5]">{filteredPhotos[activePhoto].label}</h4>
+                    <p className="text-xs text-[#8e9192]">Authentic content from our official Instagram page.</p>
+                  </div>
+                </div>
+
+                {/* Call To Action */}
+                <div className="space-y-3">
+                  <a
+                    href={filteredPhotos[activePhoto].link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 rounded-lg bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-[1.02] shadow-lg pointer-events-auto"
+                  >
+                    <Instagram className="w-4 h-4 fill-white" />
+                    Watch on Instagram
+                  </a>
+                  <p className="text-[10px] text-center text-[#8e9192]">Clicking opens Instagram in a new tab</p>
                 </div>
               </motion.div>
 

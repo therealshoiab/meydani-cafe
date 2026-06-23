@@ -15,21 +15,22 @@ We are pleased to hand over the complete, premium, responsive website developed 
 ## 2. Pages & Features Delivered
 
 ### Page 1: Home
-- Hero banner with animated title fades and Google & Zomato rating trust badges.
+- Hero banner with custom brand logo, animated title fades, and Google & Zomato rating trust badges.
 - Quick Info strip showing opening hours, location landmarks, and click-to-call direct phone triggers.
-- Signature Dishes showcase containing bestseller tags and direct WhatsApp order links.
+- Signature Dishes showcase containing bestseller tags, direct WhatsApp order links, and quick order links for Zomato and Swiggy.
 - Infinite scrolling Reviews marquee featuring verified client quotes.
-- Instagram gallery placeholders linked to your official handle.
+- Instagram gallery grid displaying 6 real posts/reels linking directly to your Instagram profile.
 
 ### Page 2: Interactive Menu
 - Real-time search bar and filter chips (All, Veg, Non-Veg, and categories).
+- Quick Zomato and Swiggy direct links on every menu item card.
 - Floating Shopping Cart that updates items, quantities, and prices dynamically.
-- Checkout system that formats ordered dishes into a pre-filled text block and opens WhatsApp to place the order.
+- Checkout system featuring WhatsApp checkout (green branding), Zomato (red branding), and Swiggy (orange branding) direct order buttons.
 
 ### Page 3: Photo Gallery
-- Grid displaying Ambiance, Food, and Event categories.
-- Immersive Lightbox overlay showing full-screen views with next/previous controls.
-- Upload CTA linking directly to your Instagram profile.
+- Grid displaying Ambiance, Food, and Reels categories loaded with 72 actual Instagram posts/reels.
+- Immersive Lightbox overlay showing full-screen views with Instagram post mock previews and a "Watch on Instagram" direct CTA.
+- Share CTA linking directly to your Instagram profile.
 
 ### Page 4: Table Reservations
 - Interactive form restricting dates to valid dining boundaries (today + 30 days max).
@@ -46,8 +47,7 @@ We are pleased to hand over the complete, premium, responsive website developed 
 - Copy-address clipboard utility.
 
 ### Page 7: Offers & Events
-- Promotional blocks for Happy Hour, Weekend platters, and catering reservations.
-- Subscription form saving newsletter emails in local storage lists.
+- Promotional blocks for Happy Hour, Weekend platters, and catering reservations with a direct WhatsApp coordination link.
 
 ---
 
@@ -71,9 +71,10 @@ To add, edit, or delete items:
 
 ---
 
-## 4. How to Replace Placeholder Photos
+## 4. How to Replace Placeholder Photos & Logos
 
-- Homepage featured images and hero banners are currently loaded from high-resolution, royalty-free URLs.
+- **Brand Logo**: The official brand logo is saved in the `/public/logo.png` and `/src/assets/logo.png` files. You can replace these files with any new PNG image using the same name (`logo.png`) to update the logo across the header and footer.
+- **Photos**: Homepage featured images and hero banners are currently loaded from high-resolution, royalty-free URLs.
 - To replace them with your own custom photographs:
   1. Save your photos inside the `/src/assets/` folder.
   2. Update the image reference paths inside [Home.jsx](file:///C:/Users/Baha/Documents/Meydani%20cafe/restaurant-website/src/pages/Home.jsx) or [About.jsx](file:///C:/Users/Baha/Documents/Meydani%20cafe/restaurant-website/src/pages/About.jsx) to point to your local assets (e.g. `import heroImage from '../assets/my-hero.jpg'`).
@@ -82,13 +83,13 @@ To add, edit, or delete items:
 
 ## 5. Contact Configurations
 *   **Takeaway & Cart WhatsApp Number**: `+917780938743` (for cart checkout and reservations dispatch)
-*   **Direct Inbound Call Hotline**: `+918899058697` (linked to click-to-call buttons)
-*   **Instagram Handle**: `@meydani_cafe1`
+*   **Direct Inbound Call Hotline**: `+918899058697` (linked to click-to-call)
+*   **Instagram Handle**: `@meydani_cafe1` (URLs: `https://www.instagram.com/meydani_cafe1/`)
 *   **Facebook Handle**: `meydanicafe1`
 
 ---
 
 ## 6. Monthly Maintenance Recommendations
 1. **Menu Syncing**: Check pricing weekly against delivery apps (Zomato/Swiggy) to ensure consistency.
-2. **Newsletter Management**: Periodically extract registered emails from local storage (or link it to a database like Mailchimp).
-3. **Asset Backup**: Keep local copies of all custom food and ambiance photographs uploaded to the assets directory.
+2. **Asset Backup**: Keep local copies of all custom food and ambiance photographs uploaded to the assets directory.
+3. **Analytics Review**: Monitor visitors using GitHub repository insights or link the page to Google Analytics.

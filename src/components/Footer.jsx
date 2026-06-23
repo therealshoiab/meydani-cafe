@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { UtensilsCrossed, Instagram, Facebook, MapPin, Phone, Mail } from 'lucide-react';
+import { Instagram, Facebook, MapPin, Phone, Mail } from 'lucide-react';
 import RatingBadge from './RatingBadge';
+import logo from '../assets/logo.png';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,8 +13,8 @@ export default function Footer() {
         
         {/* Brand Details */}
         <div className="space-y-4">
-          <Link to="/" className="flex items-center gap-2">
-            <UtensilsCrossed className="w-6 h-6 text-[#ffbf00]" />
+          <Link to="/" className="flex items-center gap-2.5">
+            <img src={logo} alt="Meydani Cafe Logo" className="w-8 h-8 object-contain rounded-full bg-[#1e1e1e] p-0.5 border border-[#ffbf00]/30" />
             <span className="font-display text-xl font-bold tracking-wider text-[#c8c6c5]">
               MEYDANI CAFE
             </span>
