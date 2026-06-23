@@ -58,7 +58,7 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/meydani-cafe">
       <div className="min-h-screen flex flex-col justify-between bg-[#141313] text-[#c8c6c5]">
         {/* Spinner Loader overlay */}
         <LoadingScreen />
