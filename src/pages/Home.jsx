@@ -66,15 +66,15 @@ export default function Home() {
 
       {/* 1. HERO SECTION */}
       <section className="relative h-screen flex flex-col justify-center items-center text-center px-6 overflow-hidden">
-        {/* Atmospheric Ambient Background Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#141313]/70 via-[#141313]/90 to-[#141313] z-10" />
+        {/* Atmospheric Ambient Background Overlay - Made brighter with lighter gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#141313]/40 via-[#141313]/50 to-[#141313] z-10" />
         <div 
-          className="absolute inset-0 bg-cover bg-center" 
+          className="absolute inset-0 bg-cover bg-center brightness-115 contrast-105 saturate-110" 
           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop')` }}
         />
 
         {/* Glow Element */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-[#ffbf00]/5 blur-[120px] pointer-events-none z-0" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-[#ffbf00]/10 blur-[120px] pointer-events-none z-0" />
 
         <div className="relative z-20 max-w-4xl mx-auto space-y-6">
           {/* Rating Badges Row */}
@@ -93,7 +93,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#c8c6c5]"
+            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
           >
             Meydani Cafe
           </motion.h1>
@@ -103,7 +103,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-display text-lg md:text-2xl text-[#ffbf00] italic font-medium"
+            className="font-display text-lg md:text-2xl text-[#ffbf00] italic font-semibold drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
           >
             A Taste of Turkey on the Banks of Jhelum
           </motion.p>
