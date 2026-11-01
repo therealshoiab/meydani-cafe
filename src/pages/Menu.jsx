@@ -197,19 +197,42 @@ export default function Menu() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-[#1e1e1e] border border-[#2d2b2b] rounded-xl p-6 flex flex-col justify-between hover:border-[#ffbf00]/30 hover:shadow-xl hover:shadow-[#ffbf00]/5 transition-all duration-300 group relative overflow-hidden"
+                  className="bg-[#1e1e1e] border border-[#2d2b2b] rounded-2xl p-4 sm:p-5 flex flex-col justify-between hover:border-[#ffbf00]/40 hover:shadow-2xl hover:shadow-[#ffbf00]/10 transition-all duration-300 group relative overflow-hidden"
                 >
-                  <div className="space-y-4">
-                    {/* Top tags and indicators */}
-                    <div className="flex justify-between items-center">
-                      <span className="flex items-center gap-1.5">
-                        <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${item.type === 'Veg' ? 'bg-green-500' : 'bg-red-500'}`} />
-                        <span className="text-[10px] uppercase font-bold tracking-wider text-[#8e9192]">{item.type}</span>
-                      </span>
+                  <div>
+                    {/* Square Dish Image (1:1 Aspect Ratio) */}
+                    <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-4 bg-[#141313] border border-[#2d2b2b]">
+                      <img 
+                        src={item.image || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600&h=600'}
+                        alt={item.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600&h=600';
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1e1e1e]/60 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+
+                      {/* Veg / Non-Veg Square Indicator in Top-Left */}
+                      <div 
+                        className="absolute top-3 left-3 w-5 h-5 rounded-[4px] bg-white/95 flex items-center justify-center shadow-md"
+                        style={{ border: item.type === 'Veg' ? '2px solid #16a34a' : '2px solid #dc2626' }}
+                        title={item.type === 'Veg' ? 'Vegetarian' : 'Non-Vegetarian'}
+                      >
+                        <div 
+                          className="w-2.5 h-2.5 rounded-full"
+                          style={{ backgroundColor: item.type === 'Veg' ? '#16a34a' : '#dc2626' }}
+                        />
+                      </div>
+
+                      {/* Bestseller / Must-Try Tag Badges in Top-Right */}
                       {item.tags && item.tags.length > 0 && (
-                        <div className="flex gap-1">
+                        <div className="absolute top-3 right-3 flex flex-col gap-1 items-end">
                           {item.tags.map(t => (
-                            <span key={t} className="px-2 py-0.5 rounded bg-[#ffbf00]/15 text-[#ffbf00] border border-[#ffbf00]/25 text-[9px] font-bold uppercase tracking-wider">
+                            <span 
+                              key={t} 
+                              className="px-2.5 py-0.5 rounded-full bg-[#ffbf00] text-[#402d00] text-[10px] font-bold uppercase tracking-wider shadow-md"
+                            >
                               {t}
                             </span>
                           ))}
@@ -217,25 +240,25 @@ export default function Menu() {
                       )}
                     </div>
 
-                    {/* Title & Price */}
-                    <div className="space-y-1">
+                    {/* Dish Title & Price */}
+                    <div className="space-y-1.5">
                       <div className="flex justify-between items-baseline gap-2">
-                        <h3 className="font-display text-lg font-bold text-[#c8c6c5] group-hover:text-[#ffbf00] transition-colors">
+                        <h3 className="font-display text-lg font-bold text-[#c8c6c5] group-hover:text-[#ffbf00] transition-colors leading-snug">
                           {item.name}
                         </h3>
-                        <span className="text-[#ffbf00] font-bold text-base font-sans shrink-0">₹{item.price}</span>
+                        <span className="text-[#ffbf00] font-bold text-lg font-sans shrink-0">₹{item.price}</span>
                       </div>
                       <p className="text-xs text-[#8e9192] leading-relaxed line-clamp-2">
-                        {item.description || 'Delicately cooked with fresh Mediterranean spices and served warm.'}
+                        {item.description || 'Delicately cooked with authentic Mediterranean spices and served warm.'}
                       </p>
                     </div>
                   </div>
 
-                  {/* Add button */}
+                  {/* Action Buttons: Add to WhatsApp Cart, Zomato, Swiggy */}
                   <div className="pt-4 space-y-2">
                     <button
                       onClick={() => addToCart(item)}
-                      className="w-full py-2.5 rounded-lg border border-[#ffbf00]/30 hover:bg-[#ffbf00] hover:text-[#402d00] text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 pointer-events-auto min-h-[44px]"
+                      className="w-full py-2.5 rounded-lg border border-[#ffbf00]/40 hover:bg-[#ffbf00] hover:text-[#402d00] text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 pointer-events-auto min-h-[44px]"
                     >
                       <Plus className="w-4 h-4" />
                       Add to WhatsApp Order

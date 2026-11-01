@@ -8,7 +8,6 @@ const links = [
   { name: 'Home', path: '/' },
   { name: 'Menu', path: '/menu' },
   { name: 'Gallery', path: '/gallery' },
-  { name: 'Reservations', path: '/reservations' },
   { name: 'About Us', path: '/about' },
   { name: 'Offers', path: '/offers' },
   { name: 'Contact', path: '/contact' },
@@ -87,7 +86,7 @@ export default function Navbar() {
           {/* Reserve Table CTA */}
           <div className="hidden lg:block">
             <Link
-              to="/reservations"
+              to="/contact?tab=reserve"
               className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-[#ffbf00] text-[#402d00] text-sm font-semibold tracking-wider uppercase hover:bg-[#ffbf00]/90 transition-all duration-200 shadow-md shadow-[#ffbf00]/15"
             >
               Reserve Table
@@ -132,7 +131,7 @@ export default function Navbar() {
             </nav>
 
             <Link
-              to="/reservations"
+              to="/contact?tab=reserve"
               className="w-full text-center py-3.5 rounded-lg bg-[#ffbf00] text-[#402d00] text-sm font-bold tracking-wider uppercase hover:bg-[#ffbf00]/90 transition-colors shadow-lg shadow-[#ffbf00]/10"
             >
               Reserve Table

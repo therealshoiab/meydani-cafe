@@ -56,7 +56,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/reservations" className="text-sm text-[#8e9192] hover:text-[#ffbf00] transition-colors">
+              <Link to="/contact?tab=reserve" className="text-sm text-[#8e9192] hover:text-[#ffbf00] transition-colors">
                 Book a Table
               </Link>
             </li>

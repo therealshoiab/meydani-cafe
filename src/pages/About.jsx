@@ -171,7 +171,7 @@ export default function About() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to="/reservations"
+              to="/contact?tab=reserve"
               className="w-full sm:w-auto px-8 py-4 rounded-lg bg-[#ffbf00] text-[#402d00] font-bold uppercase tracking-wider text-xs hover:bg-[#ffbf00]/95 transition-all shadow-lg shadow-[#ffbf00]/15"
             >
               Reserve Table

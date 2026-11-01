@@ -90,28 +90,39 @@
             "price": 549,
             "description": "Ground lamb or beef, grilled on a skewer and served wrapped in a lavash and topped with tomato sauce and yogurt.",
             "type": "Non-Veg",
-            "tags": ["Bestseller", "Must-try"]
+            "tags": [
+              "Bestseller",
+              "Must-try"
+            ],
+            "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Chicken Turkish Kabab (2 Pcs)",
             "price": 299,
             "description": "Perfectly spiced minced chicken skewers grilled over hot charcoal, bursting with authentic Turkish flavors.",
             "type": "Non-Veg",
-            "tags": ["Must-try"]
+            "tags": [
+              "Must-try"
+            ],
+            "image": "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Hummus With Pita Bread",
             "price": 349,
             "description": "Creamy, smooth blend of chickpeas, tahini, olive oil, and garlic served with warm, freshly baked pita bread.",
             "type": "Veg",
-            "tags": ["Bestseller"]
+            "tags": [
+              "Bestseller"
+            ],
+            "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Romali Roti",
             "price": 55,
             "description": "Super thin, soft, and hand-stretched flatbread, perfect to wrap around juicy grilled kebabs.",
             "type": "Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=600&h=600"
           }
         ]
       },
@@ -123,21 +134,31 @@
             "price": 399,
             "description": "Tender cubes of chicken breast marinated in yogurt, lemon, and garlic, grilled to juicy perfection.",
             "type": "Non-Veg",
-            "tags": ["Must-try"]
+            "tags": [
+              "Must-try"
+            ],
+            "image": "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Lamb Chops (4 Pcs)",
             "price": 599,
             "description": "Premium lamb chops marinated in a special blend of Turkish herbs and olive oil, char-grilled to order.",
             "type": "Non-Veg",
-            "tags": ["Bestseller"]
+            "tags": [
+              "Bestseller"
+            ],
+            "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Mix Kabab Platter",
             "price": 799,
             "description": "A grand platter featuring 4 pcs Turkish Kabab, 4 pcs Adana Kabab, and 4 pcs Chicken Kabab, served with Romali Roti and dip.",
             "type": "Non-Veg",
-            "tags": ["Bestseller", "Must-try"]
+            "tags": [
+              "Bestseller",
+              "Must-try"
+            ],
+            "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600&h=600"
           }
         ]
       },
@@ -149,28 +170,37 @@
             "price": 249,
             "description": "Juicy, grilled minced beef patty inside a toasted bun with fresh lettuce, tomatoes, cheese, and house sauce, served with crispy fries.",
             "type": "Non-Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Chicken Blast",
             "price": 299,
             "description": "A crispy, deep-fried double chicken fillet burger loaded with spicy mayo, cheese slice, and fresh veggies.",
             "type": "Non-Veg",
-            "tags": ["Bestseller"]
+            "tags": [
+              "Bestseller"
+            ],
+            "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Meydani Chicken Shawarma",
             "price": 179,
             "description": "Slow-roasted marinated chicken shavings wrapped in fresh pita with garlic paste, pickles, and crispy fries.",
             "type": "Non-Veg",
-            "tags": ["Bestseller", "Must-try"]
+            "tags": [
+              "Bestseller",
+              "Must-try"
+            ],
+            "image": "https://images.unsplash.com/photo-1637806930600-37fa8892069d?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Shawarma Combo",
             "price": 249,
             "description": "Our signature Meydani Chicken Shawarma served alongside a chilled Mountain Dew and extra garlic garlic dip.",
             "type": "Non-Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&q=80&w=600&h=600"
           }
         ]
       },
@@ -182,28 +212,34 @@
             "price": 349,
             "description": "Tender chicken pieces cooked in a rich, velvety, mildly sweet tomato and butter gravy finished with fresh cream.",
             "type": "Non-Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Chicken Kanti (boneless-full)",
             "price": 449,
             "description": "Traditional Kashmiri style stir-fried boneless chicken cubes with sliced onions, tomatoes, and green chilies.",
             "type": "Non-Veg",
-            "tags": ["Must-try"]
+            "tags": [
+              "Must-try"
+            ],
+            "image": "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Mutton Kanti",
             "price": 549,
             "description": "Spicy and dry mutton cubes pan-fried with onions, tomatoes, and aromatic Kashmiri spices.",
             "type": "Non-Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Mutton Korma (half)",
             "price": 499,
             "description": "Slow-cooked tender mutton cooked in a rich onion-based gravy flavored with saffron and green cardamom.",
             "type": "Non-Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&q=80&w=600&h=600"
           }
         ]
       },
@@ -215,21 +251,29 @@
             "price": 299,
             "description": "Aromatic Basmati rice layered with marinated chicken, saffron, and fresh herbs, cooked on dum.",
             "type": "Non-Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Mutton Uzbeki Pulao",
             "price": 599,
             "description": "Fragrant long-grain rice cooked in mutton broth with carrots, raisins, and chick peas, topped with tender mutton pieces.",
             "type": "Non-Veg",
-            "tags": ["Must-try"]
+            "tags": [
+              "Must-try"
+            ],
+            "image": "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Uzbeki Platter",
             "price": 1299,
             "description": "A massive feast of Uzbeki Pulao, 4 pcs Lamb Chops, 2 pcs Turkish Kabab, and 2 soft drinks.",
             "type": "Non-Veg",
-            "tags": ["Bestseller", "Must-try"]
+            "tags": [
+              "Bestseller",
+              "Must-try"
+            ],
+            "image": "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=600&h=600"
           }
         ]
       },
@@ -241,35 +285,44 @@
             "price": 299,
             "description": "Penne pasta and tender chicken tossed in a spicy, robust tomato marinara sauce garnished with parmesan cheese.",
             "type": "Non-Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1621996346565-e3d5d628169b?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Turkish Pizza",
             "price": 349,
             "description": "A thin, crispy flatbread (Lahmacun) topped with a minced chicken mixture, vegetables, herbs, and lemon juice.",
             "type": "Non-Veg",
-            "tags": ["Must-try"]
+            "tags": [
+              "Must-try"
+            ],
+            "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Veg Red Penne Pasta",
             "price": 249,
             "description": "Penne pasta tossed in a rich, tangy red sauce with mixed garden vegetables like bell peppers, olives, and baby corn.",
             "type": "Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Veg White Sauce Penne Pasta",
             "price": 249,
             "description": "Penne pasta cooked in a creamy, velvety cheese sauce with fresh mushrooms, broccoli, and sweet corn.",
             "type": "Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "White Sauce Chicken Penne Pasta",
             "price": 299,
             "description": "Rich and creamy penne pasta tossed in a garlic-flavored alfredo sauce with pan-seared chicken and herbs.",
             "type": "Non-Veg",
-            "tags": ["Bestseller"]
+            "tags": [
+              "Bestseller"
+            ],
+            "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&q=80&w=600&h=600"
           }
         ]
       },
@@ -281,21 +334,24 @@
             "price": 129,
             "description": "A refreshing blend of fresh mint leaves, lime juice, sugar syrup, and soda served over crushed ice.",
             "type": "Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Strawberry Mojito",
             "price": 139,
             "description": "Sweet strawberries muddled with fresh mint and lime, topped with soda for a fruity fizz.",
             "type": "Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1546171753-97d7676e4602?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Watermelon Mojito",
             "price": 139,
             "description": "Fresh watermelon chunks and mint leaves crushed with lime juice, served chilled with soda.",
             "type": "Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1560512823-829485b8bf24?auto=format&fit=crop&q=80&w=600&h=600"
           }
         ]
       },
@@ -307,21 +363,27 @@
             "price": 199,
             "description": "Soft baked sweet apricots stuffed with almond paste and fresh cream, a local and Middle Eastern fusion dessert.",
             "type": "Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Chocolate Brownie",
             "price": 149,
             "description": "Warm, fudgy chocolate brownie loaded with chocolate chips and served with chocolate sauce.",
             "type": "Veg",
-            "tags": []
+            "tags": [],
+            "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600&h=600"
           },
           {
             "name": "Kunafa",
             "price": 249,
             "description": "Traditional Middle Eastern dessert made with thin noodle-like pastry, soaked in sweet sugar-based syrup, and layered with cheese.",
             "type": "Veg",
-            "tags": ["Bestseller", "Must-try"]
+            "tags": [
+              "Bestseller",
+              "Must-try"
+            ],
+            "image": "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&q=80&w=600&h=600"
           }
         ]
       }

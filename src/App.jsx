@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
 
@@ -14,7 +14,6 @@ import LoadingScreen from './components/LoadingScreen';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Gallery from './pages/Gallery';
-import Reservations from './pages/Reservations';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Offers from './pages/Offers';
@@ -47,7 +46,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
         <Route path="/menu" element={<PageWrapper><Menu /></PageWrapper>} />
         <Route path="/gallery" element={<PageWrapper><Gallery /></PageWrapper>} />
-        <Route path="/reservations" element={<PageWrapper><Reservations /></PageWrapper>} />
+        <Route path="/reservations" element={<Navigate to="/contact?tab=reserve" replace />} />
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
         <Route path="/offers" element={<PageWrapper><Offers /></PageWrapper>} />

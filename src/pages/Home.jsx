@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, MapPin, Phone, MessageSquare, Star, ChevronDown, Award, Shield, ThumbsUp } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Phone, MessageSquare, Star, ChevronDown, Award, Shield, ThumbsUp, Play, Volume2, VolumeX } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import RatingBadge from '../components/RatingBadge';
 
@@ -45,6 +45,41 @@ const reviews = [
 
 export default function Home() {
   const whatsappNumber = '917780938743';
+
+  // --- 6 CULINARY MOTION VIDEOS (2 ROWS OF 3 IN 9:16) ---
+  const homeVideos = [
+    { id: 's1', url: `${import.meta.env.BASE_URL}images/s1.mp4`, title: 'The Royal Samovar Brew', tag: 'Artisanal Kahwa' },
+    { id: 's2', url: `${import.meta.env.BASE_URL}images/s2.mp4`, title: 'Hand-Pressed Kebab Craft', tag: 'Turkish Grills' },
+    { id: 's4', url: `${import.meta.env.BASE_URL}images/s4.mp4`, title: 'Fiery Charcoal Tandoor', tag: 'Smoked Platters' },
+    { id: 's5', url: `${import.meta.env.BASE_URL}images/s5.mp4`, title: 'Juicy Skewers & Warm Pita', tag: 'Authentic Mezze' },
+    { id: 's7', url: `${import.meta.env.BASE_URL}images/s7.mp4`, title: 'Signature Refresher Pour', tag: 'Beverage Bar' },
+    { id: 's8', url: `${import.meta.env.BASE_URL}images/s8.mp4`, title: 'Evening Ambiance by Jhelum', tag: 'Riverside Lounge' },
+  ];
+
+  const [mutedVideos, setMutedVideos] = useState({
+    s1: true, s2: true, s4: true, s5: true, s7: true, s8: true
+  });
+  const [playingVideoId, setPlayingVideoId] = useState(null);
+  const videoRefs = useRef({});
+
+  const playSingleVideo = (id) => {
+    setPlayingVideoId(id);
+    homeVideos.forEach((v) => {
+      const el = videoRefs.current[v.id];
+      if (el) {
+        if (v.id === id) {
+          el.play().catch(() => {});
+        } else {
+          el.pause();
+        }
+      }
+    });
+  };
+
+  const toggleMute = (id, e) => {
+    e.stopPropagation();
+    setMutedVideos(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const makeWhatsAppUrl = (dishName) => {
     const text = encodeURIComponent(`Hi Meydani Cafe! I would like to order the featured dish: *${dishName}* from your website.`);
@@ -116,7 +151,7 @@ export default function Home() {
             className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Link
-              to="/reservations"
+              to="/contact?tab=reserve"
               className="w-full sm:w-auto px-8 py-4 rounded-lg bg-[#ffbf00] text-[#402d00] font-bold uppercase tracking-wider text-sm hover:bg-[#ffbf00]/95 hover:shadow-lg hover:shadow-[#ffbf00]/15 transition-all duration-200"
             >
               Reserve Table
@@ -452,53 +487,181 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. INSTAGRAM STRIP */}
+      {/* 7. CULINARY MOTION — 6 VIDEOS IN 2 LINES (3 PER LINE, 9:16 RATIO) */}
       <section className="py-20 bg-[#1e1e1e] border-y border-[#2d2b2b]">
-        <div className="max-w-[1200px] mx-auto px-6 space-y-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-center sm:text-left space-y-1">
-              <h3 className="font-display text-2xl font-bold text-[#c8c6c5]">Follow Us On Instagram</h3>
-              <p className="text-xs text-[#8e9192]">Share your meals using #MeydaniCafe</p>
+        <div className="max-w-[1200px] mx-auto px-6 space-y-10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-xs uppercase tracking-[0.2em] text-[#ffbf00] font-semibold">
+                Culinary Motion
+              </span>
+              <h2 className="font-display text-3xl md:text-5xl font-bold text-[#c8c6c5] mt-1">
+                Stories from the Kitchen &amp; Lounge
+              </h2>
             </div>
-            <a 
-              href="https://www.instagram.com/meydani_cafe1/?hl=en" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-lg border border-[#3a3939] text-[#c8c6c5] hover:text-[#ffbf00] hover:border-[#ffbf00] text-xs font-semibold uppercase tracking-wider transition-all duration-200"
+            <Link
+              to="/gallery"
+              className="text-sm font-bold text-[#ffbf00] hover:text-[#ffbf00]/80 transition-colors inline-flex items-center gap-1.5"
             >
-              @meydani-cafe1
-            </a>
+              All Videos &amp; Gallery &rarr;
+            </Link>
           </div>
 
-          {/* 3 Real Embedded Reels */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { label: "Meydani Cafe Grills & Vibe", link: "https://www.instagram.com/meydani_cafe1/reel/DZjfw6IOK92/?hl=en" },
-              { label: "Mubashir Kashmiri Review", link: "https://www.instagram.com/mubashirkashmirii/reel/DYCWrvWpe5w/?hl=en" },
-              { label: "Authentic Turkish Flavors", link: "https://www.instagram.com/meydani_cafe1/reel/DWsuULoDkCW/?hl=en" }
-            ].map((tile, i) => {
-              const match = tile.link.match(/\/(p|reel|tv)\/([A-Za-z0-9_-]+)/);
-              const embedUrl = match ? `https://www.instagram.com/p/${match[2]}/embed/` : null;
+          {/* 6 Videos Grid: 2 Lines of 3 Videos in 9:16 Aspect Ratio */}
+          <div className="home-videos-grid-3x2">
+            {homeVideos.map((vid) => {
+              const isMuted = mutedVideos[vid.id] ?? true;
+              const isPlaying = playingVideoId === vid.id;
               return (
-                <div 
-                  key={i} 
-                  className="w-full h-[480px] rounded-2xl overflow-hidden bg-[#141313] border border-[#2d2b2b] hover:border-[#ffbf00]/30 hover:shadow-xl hover:shadow-[#ffbf00]/5 transition-all duration-300 flex flex-col justify-between"
+                <div
+                  key={vid.id}
+                  className="video-card-9-16 group"
+                  style={{ cursor: 'pointer', position: 'relative' }}
+                  onMouseEnter={() => {
+                    if (window.innerWidth > 768) playSingleVideo(vid.id);
+                  }}
+                  onMouseLeave={() => {
+                    if (window.innerWidth > 768) playSingleVideo(null);
+                  }}
+                  onClick={() => {
+                    playSingleVideo(isPlaying ? null : vid.id);
+                  }}
                 >
-                  <div className="flex-1 w-full relative overflow-hidden">
-                    <iframe
-                      src={embedUrl}
-                      className="w-full h-full border-0 absolute inset-0"
-                      scrolling="no"
-                      allowtransparency="true"
-                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                      allowFullScreen={true}
-                      loading="lazy"
-                      title={tile.label}
-                    />
-                  </div>
-                  <div className="p-3 bg-[#141313] border-t border-[#2d2b2b] text-center">
-                    <span className="text-[10px] uppercase tracking-wider text-[#ffbf00] font-semibold">
-                      {tile.label}
+                  <video
+                    ref={(el) => {
+                      videoRefs.current[vid.id] = el;
+                    }}
+                    src={vid.url}
+                    loop
+                    muted={isMuted}
+                    playsInline
+                    preload="metadata"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                  />
+
+                  {/* Play Icon Overlay (Visible when video is paused) */}
+                  {!isPlaying && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '54px',
+                        height: '54px',
+                        borderRadius: '50%',
+                        backgroundColor: 'rgba(0, 0, 0, 0.55)',
+                        backdropFilter: 'blur(8px)',
+                        border: '1.5px solid #ffbf00',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 3,
+                        pointerEvents: 'none',
+                        boxShadow: '0 4px 18px rgba(0, 0, 0, 0.5)',
+                        transition: 'opacity 0.3s ease',
+                      }}
+                    >
+                      <Play
+                        size={22}
+                        fill="#ffbf00"
+                        color="#ffbf00"
+                        style={{ marginLeft: '3px' }}
+                      />
+                    </div>
+                  )}
+
+                  {/* Category Pill Tag */}
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '1rem',
+                      left: '1rem',
+                      backgroundColor: 'rgba(0, 0, 0, 0.65)',
+                      backdropFilter: 'blur(8px)',
+                      color: '#ffbf00',
+                      fontSize: '0.72rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.06em',
+                      padding: '0.35rem 0.75rem',
+                      borderRadius: '9999px',
+                      border: '1px solid rgba(255, 191, 0, 0.35)',
+                      textTransform: 'uppercase',
+                      zIndex: 3,
+                    }}
+                  >
+                    {vid.tag}
+                  </span>
+
+                  {/* Sound Toggle Button */}
+                  <button
+                    onClick={(e) => toggleMute(vid.id, e)}
+                    aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+                    style={{
+                      position: 'absolute',
+                      top: '1rem',
+                      right: '1rem',
+                      backgroundColor: 'rgba(0, 0, 0, 0.65)',
+                      backdropFilter: 'blur(8px)',
+                      border: '1px solid rgba(255, 255, 255, 0.25)',
+                      color: isMuted ? '#ffffff' : '#ffbf00',
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      zIndex: 4,
+                      transition: 'all 0.2s ease',
+                    }}
+                  >
+                    {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                  </button>
+
+                  {/* Bottom Gradient Scrim with Title */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      padding: '3rem 1.25rem 1.25rem 1.25rem',
+                      background:
+                        'linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%)',
+                      zIndex: 2,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '0.35rem',
+                    }}
+                  >
+                    <h4
+                      style={{
+                        fontSize: '1.08rem',
+                        color: '#ffffff',
+                        margin: 0,
+                        fontWeight: 600,
+                        lineHeight: 1.3,
+                        textShadow: '0 2px 8px rgba(0,0,0,0.9)',
+                      }}
+                    >
+                      {vid.title}
+                    </h4>
+                    <span
+                      style={{
+                        fontSize: '0.74rem',
+                        color: '#ffbf00',
+                        fontWeight: 600,
+                        letterSpacing: '0.08em',
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      9:16 Cinematic Motion
                     </span>
                   </div>
                 </div>
