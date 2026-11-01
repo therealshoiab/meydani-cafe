@@ -2,231 +2,47 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Video, Image as ImageIcon, X, ChevronLeft, ChevronRight, Maximize2, ExternalLink, Instagram } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import galleryMediaData from '../data/gallery-media.json';
 
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState('all'); // 'all' | 'photos' | 'videos'
+  const [visibleCount, setVisibleCount] = useState(18);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const videoRefs = useRef({});
   const cardRefs = useRef({});
 
   const baseUrl = import.meta.env.BASE_URL;
 
-  // Curated genuine Meydani Cafe gallery items matching Image 2's masonry layout
-  const galleryItems = useMemo(() => [
-    {
-      id: 'm1',
-      type: 'video',
-      url: `${baseUrl}media/m1.mp4`,
-      poster: `${baseUrl}media/m1.jpg`,
-      title: 'Meydani Cafe Grills & Vibe',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DZjfw6IOK92/'
-    },
-    {
-      id: 'g_p1',
-      type: 'photo',
-      url: `${baseUrl}media/g_p1.jpg`,
-      title: 'Authentic Turkish Kabab Platter',
-      category: 'Food',
-      aspect: 'aspect-square',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/p/DYj7fcdH9vI/'
-    },
-    {
-      id: 'g_v1',
-      type: 'video',
-      url: `${baseUrl}media/g_v1.mp4`,
-      poster: `${baseUrl}media/g_v1.jpg`,
-      title: 'S.ia.06 Dining Experience',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/s.ia.06/reel/DYPUV7ZvuXt/'
-    },
-    {
-      id: 'g_p3',
-      type: 'photo',
-      url: `${baseUrl}media/g_p3.jpg`,
-      title: 'Signature Turkish Pizza Lahmacun',
-      category: 'Food',
-      aspect: 'aspect-video',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/p/DZQOVmqjkb6/'
-    },
-    {
-      id: 'm2',
-      type: 'video',
-      url: `${baseUrl}media/m2.mp4`,
-      poster: `${baseUrl}media/m2.jpg`,
-      title: 'Mubashir Kashmiri Review',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/mubashirkashmirii/reel/DYCWrvWpe5w/'
-    },
-    {
-      id: 'g_p4',
-      type: 'photo',
-      url: `${baseUrl}media/g_p4.jpg`,
-      title: 'Meydani Special Family Feast',
-      category: 'Food',
-      aspect: 'aspect-square',
-      instagramUrl: 'https://www.instagram.com/aimanashrafbhat/p/DPz3jzigbeT/'
-    },
-    {
-      id: 'g_v2',
-      type: 'video',
-      url: `${baseUrl}media/g_v2.mp4`,
-      poster: `${baseUrl}media/g_v2.jpg`,
-      title: 'Xplorer Sahil Food Feature',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/xplorer_sahil/reel/DYPRa7ggaz0/'
-    },
-    {
-      id: 'g_p5',
-      type: 'photo',
-      url: `${baseUrl}media/g_p5.jpg`,
-      title: 'Creamy Hummus Dip with Pita',
-      category: 'Food',
-      aspect: 'aspect-square',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/p/DMfzqBbuxSB/'
-    },
-    {
-      id: 'm3',
-      type: 'video',
-      url: `${baseUrl}media/m3.mp4`,
-      poster: `${baseUrl}media/m3.jpg`,
-      title: 'Authentic Turkish Flavors',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DWsuULoDkCW/'
-    },
-    {
-      id: 'g_p6',
-      type: 'photo',
-      url: `${baseUrl}media/g_p6.jpg`,
-      title: 'Charcoal Grilled Kebab Spread',
-      category: 'Food',
-      aspect: 'aspect-video',
-      instagramUrl: 'https://www.instagram.com/foods.in.kashmir/p/DGr9wZiPun6/'
-    },
-    {
-      id: 'g_v3',
-      type: 'video',
-      url: `${baseUrl}media/g_v3.mp4`,
-      poster: `${baseUrl}media/g_v3.jpg`,
-      title: 'NexGen Marketing Food Tour',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/nexgen.marketting/reel/DZhtId9JvDx/'
-    },
-    {
-      id: 'g_p7',
-      type: 'photo',
-      url: `${baseUrl}media/g_p7.jpg`,
-      title: 'Traditional Turkish Cezve Coffee',
-      category: 'Food',
-      aspect: 'aspect-square',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/p/Cmx6E2Tt8W4/'
-    },
-    {
-      id: 'm4',
-      type: 'video',
-      url: `${baseUrl}media/m4.mp4`,
-      poster: `${baseUrl}media/m4.jpg`,
-      title: 'Warm Kunafa Preparation',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DZBuQ53OlwQ/'
-    },
-    {
-      id: 'g_v4',
-      type: 'video',
-      url: `${baseUrl}media/g_v4.mp4`,
-      poster: `${baseUrl}media/g_v4.jpg`,
-      title: 'Meydani Special Platter Grill',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DYGJGjeu4eN/'
-    },
-    {
-      id: 'm5',
-      type: 'video',
-      url: `${baseUrl}media/m5.mp4`,
-      poster: `${baseUrl}media/m5.jpg`,
-      title: 'Weekend Riverside Feast',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DYrajFsMmse/'
-    },
-    {
-      id: 'g_v6',
-      type: 'video',
-      url: `${baseUrl}media/g_v6.mp4`,
-      poster: `${baseUrl}media/g_v6.jpg`,
-      title: 'Riverside Sunset Atmosphere',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DXvBfzpuguO/'
-    },
-    {
-      id: 'm6',
-      type: 'video',
-      url: `${baseUrl}media/m6.mp4`,
-      poster: `${baseUrl}media/m6.jpg`,
-      title: 'Traditional Turkish Samovar',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DYBfjSQOoxf/'
-    },
-    {
-      id: 'g_v7',
-      type: 'video',
-      url: `${baseUrl}media/g_v7.mp4`,
-      poster: `${baseUrl}media/g_v7.jpg`,
-      title: 'Rabiya95 Official Review',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/rabiya95_official/reel/DXljtQeE2KL/'
-    },
-    {
-      id: 'g_v8',
-      type: 'video',
-      url: `${baseUrl}media/g_v8.mp4`,
-      poster: `${baseUrl}media/g_v8.jpg`,
-      title: 'Fresh Sizzling Tandoor',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DXdbH4rDlMy/'
-    },
-    {
-      id: 'g_v9',
-      type: 'video',
-      url: `${baseUrl}media/g_v9.mp4`,
-      poster: `${baseUrl}media/g_v9.jpg`,
-      title: 'Signature Lavash Wrap',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DXBR_c0DtQe/'
-    },
-    {
-      id: 'g_v10',
-      type: 'video',
-      url: `${baseUrl}media/g_v10.mp4`,
-      poster: `${baseUrl}media/g_v10.jpg`,
-      title: 'Nooriverse Experience',
-      category: 'Reels',
-      aspect: 'aspect-[9/16]',
-      instagramUrl: 'https://www.instagram.com/nooriversse/reel/DWq01_gCf5H/'
-    }
-  ], [baseUrl]);
+  // Enhance items with full URLs
+  const items = useMemo(() => {
+    return galleryMediaData.map((item, idx) => ({
+      ...item,
+      index: idx,
+      fullUrl: `${baseUrl}${item.url}`,
+      fullPoster: item.poster ? `${baseUrl}${item.poster}` : undefined,
+    }));
+  }, [baseUrl]);
 
   // Filter items based on activeTab
   const filteredItems = useMemo(() => {
-    if (activeTab === 'photos') return galleryItems.filter(item => item.type === 'photo');
-    if (activeTab === 'videos') return galleryItems.filter(item => item.type === 'video');
-    return galleryItems;
-  }, [galleryItems, activeTab]);
+    if (activeTab === 'photos') return items.filter(item => item.type === 'photo');
+    if (activeTab === 'videos') return items.filter(item => item.type === 'video');
+    return items;
+  }, [items, activeTab]);
 
-  // Handle video hover to play muted preview
+  const visibleItems = useMemo(() => {
+    return filteredItems.slice(0, visibleCount);
+  }, [filteredItems, visibleCount]);
+
+  const photosCount = useMemo(() => items.filter(i => i.type === 'photo').length, [items]);
+  const videosCount = useMemo(() => items.filter(i => i.type === 'video').length, [items]);
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setVisibleCount(18);
+  };
+
+  // Video hover to play muted preview
   const handleMouseEnter = (id) => {
     const el = videoRefs.current[id];
     if (el) {
@@ -299,28 +115,28 @@ export default function Gallery() {
         {/* Filter Buttons Matching Image 2 */}
         <div className="gallery-tab-container">
           <button
-            onClick={() => setActiveTab('all')}
+            onClick={() => handleTabChange('all')}
             className={`gallery-tab-btn ${activeTab === 'all' ? 'active' : ''}`}
           >
-            All Media
+            All Media ({items.length})
           </button>
           <button
-            onClick={() => setActiveTab('photos')}
+            onClick={() => handleTabChange('photos')}
             className={`gallery-tab-btn ${activeTab === 'photos' ? 'active' : ''}`}
           >
-            Photos
+            Photos ({photosCount})
           </button>
           <button
-            onClick={() => setActiveTab('videos')}
+            onClick={() => handleTabChange('videos')}
             className={`gallery-tab-btn ${activeTab === 'videos' ? 'active' : ''}`}
           >
-            Videos
+            Videos ({videosCount})
           </button>
         </div>
 
         {/* 3-Column Pure Masonry Grid Matching Image 2 */}
         <div className="masonry-grid">
-          {filteredItems.map((item, index) => {
+          {visibleItems.map((item, index) => {
             const isVideo = item.type === 'video';
 
             return (
@@ -340,8 +156,8 @@ export default function Gallery() {
                     <div className="relative w-full">
                       <video
                         ref={(el) => { videoRefs.current[item.id] = el; }}
-                        src={item.url}
-                        poster={item.poster}
+                        src={item.fullUrl}
+                        poster={item.fullPoster}
                         loop
                         muted
                         playsInline
@@ -364,7 +180,7 @@ export default function Gallery() {
                     /* Photo Element */
                     <div className="relative w-full overflow-hidden">
                       <img
-                        src={item.url}
+                        src={item.fullUrl}
                         alt={item.title}
                         loading="lazy"
                         className="w-full object-cover rounded-2xl block transition-transform duration-500 group-hover:scale-105"
@@ -390,6 +206,18 @@ export default function Gallery() {
             );
           })}
         </div>
+
+        {/* Load More Pagination Button */}
+        {visibleCount < filteredItems.length && (
+          <div className="text-center pt-6">
+            <button
+              onClick={() => setVisibleCount(prev => prev + 18)}
+              className="px-8 py-3.5 bg-[#ffbf00] hover:bg-[#ffbf00]/95 text-[#402d00] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-[#ffbf00]/15 cursor-pointer pointer-events-auto"
+            >
+              Load More Media ({filteredItems.length - visibleCount} Remaining)
+            </button>
+          </div>
+        )}
 
       </div>
 
@@ -441,7 +269,7 @@ export default function Gallery() {
               <div className="w-full flex-1 min-h-[360px] max-h-[65vh] bg-black flex items-center justify-center overflow-hidden relative">
                 {currentLightboxItem.type === 'video' ? (
                   <video
-                    src={currentLightboxItem.url}
+                    src={currentLightboxItem.fullUrl}
                     controls
                     autoPlay
                     playsInline
@@ -449,7 +277,7 @@ export default function Gallery() {
                   />
                 ) : (
                   <img
-                    src={currentLightboxItem.url}
+                    src={currentLightboxItem.fullUrl}
                     alt={currentLightboxItem.title}
                     className="max-w-full max-h-[65vh] object-contain"
                   />
