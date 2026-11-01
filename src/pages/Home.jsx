@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, MapPin, Phone, MessageSquare, Star, ChevronDown, Award, Shield, ThumbsUp, Play, Instagram, ExternalLink } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Phone, MessageSquare, Star, ChevronDown, Award, Shield, ThumbsUp, Play, Volume2, VolumeX, Instagram, ExternalLink } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import RatingBadge from '../components/RatingBadge';
 
@@ -45,46 +45,95 @@ const reviews = [
 
 export default function Home() {
   const whatsappNumber = '917780938743';
+  const baseUrl = import.meta.env.BASE_URL;
 
-  // --- 6 CULINARY MOTION REELS FROM MEYDANI CAFE SOCIALS (2 ROWS OF 3 IN 9:16) ---
+  // --- 6 CULINARY MOTION REELS FROM MEYDANI CAFE (2 ROWS OF 3 IN 9:16) ---
   const homeVideos = [
     {
-      id: 'DZjfw6IOK92',
+      id: 'm1',
+      url: `${baseUrl}media/m1.mp4`,
+      poster: `${baseUrl}media/m1.jpg`,
       title: 'Meydani Cafe Grills & Vibe',
       tag: 'Turkish Grills',
-      link: 'https://www.instagram.com/meydani_cafe1/reel/DZjfw6IOK92/?hl=en',
+      sub: '9:16 Cinematic Motion',
+      link: 'https://www.instagram.com/meydani_cafe1/reel/DZjfw6IOK92/'
     },
     {
-      id: 'DYCWrvWpe5w',
+      id: 'm2',
+      url: `${baseUrl}media/m2.mp4`,
+      poster: `${baseUrl}media/m2.jpg`,
       title: 'Mubashir Kashmiri Review',
-      tag: 'Food Review',
-      link: 'https://www.instagram.com/mubashirkashmirii/reel/DYCWrvWpe5w/?hl=en',
+      tag: 'Food Critic Review',
+      sub: '9:16 Cinematic Motion',
+      link: 'https://www.instagram.com/mubashirkashmirii/reel/DYCWrvWpe5w/'
     },
     {
-      id: 'DWsuULoDkCW',
+      id: 'm3',
+      url: `${baseUrl}media/m3.mp4`,
+      poster: `${baseUrl}media/m3.jpg`,
       title: 'Authentic Turkish Flavors',
-      tag: 'Signature Feast',
-      link: 'https://www.instagram.com/meydani_cafe1/reel/DWsuULoDkCW/?hl=en',
+      tag: 'Signature Platters',
+      sub: '9:16 Cinematic Motion',
+      link: 'https://www.instagram.com/meydani_cafe1/reel/DWsuULoDkCW/'
     },
     {
-      id: 'DZBuQ53OlwQ',
+      id: 'm4',
+      url: `${baseUrl}media/m4.mp4`,
+      poster: `${baseUrl}media/m4.jpg`,
       title: 'Warm Kunafa Preparation',
       tag: 'Turkish Desserts',
-      link: 'https://www.instagram.com/meydani_cafe1/reel/DZBuQ53OlwQ/?hl=en',
+      sub: '9:16 Cinematic Motion',
+      link: 'https://www.instagram.com/meydani_cafe1/reel/DZBuQ53OlwQ/'
     },
     {
-      id: 'DYrajFsMmse',
+      id: 'm5',
+      url: `${baseUrl}media/m5.mp4`,
+      poster: `${baseUrl}media/m5.jpg`,
       title: 'Weekend Riverside Feast',
       tag: 'Riverside Dining',
-      link: 'https://www.instagram.com/meydani_cafe1/reel/DYrajFsMmse/?hl=en',
+      sub: '9:16 Cinematic Motion',
+      link: 'https://www.instagram.com/meydani_cafe1/reel/DYrajFsMmse/'
     },
     {
-      id: 'DYBfjSQOoxf',
-      title: 'Turkish Tea Samovar Experience',
-      tag: 'Chai & Samovar',
-      link: 'https://www.instagram.com/meydani_cafe1/reel/DYBfjSQOoxf/?hl=en',
-    },
+      id: 'm6',
+      url: `${baseUrl}media/m6.mp4`,
+      poster: `${baseUrl}media/m6.jpg`,
+      title: 'Traditional Turkish Samovar',
+      tag: 'Samovar & Chai',
+      sub: '9:16 Cinematic Motion',
+      link: 'https://www.instagram.com/meydani_cafe1/reel/DYBfjSQOoxf/'
+    }
   ];
+
+  const [mutedVideos, setMutedVideos] = useState({
+    m1: true, m2: true, m3: true, m4: true, m5: true, m6: true
+  });
+  const [playingVideoId, setPlayingVideoId] = useState(null);
+  const videoRefs = useRef({});
+
+  const playSingleVideo = (id) => {
+    setPlayingVideoId(id);
+    homeVideos.forEach((v) => {
+      const el = videoRefs.current[v.id];
+      if (el) {
+        if (v.id === id) {
+          el.play().catch(() => {});
+        } else {
+          el.pause();
+        }
+      }
+    });
+  };
+
+  const toggleMute = (id, e) => {
+    e.stopPropagation();
+    setMutedVideos(prev => {
+      const newVal = !prev[id];
+      const el = videoRefs.current[id];
+      if (el) el.muted = newVal;
+      return { ...prev, [id]: newVal };
+    });
+  };
 
   const makeWhatsAppUrl = (dishName) => {
     const text = encodeURIComponent(`Hi Meydani Cafe! I would like to order the featured dish: *${dishName}* from your website.`);
@@ -512,65 +561,71 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* 6 Videos Grid: 2 Lines of 3 Videos */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {homeVideos.map((vid) => (
-              <div
-                key={vid.id}
-                className="w-full h-[520px] rounded-2xl overflow-hidden bg-[#141313] border border-[#2d2b2b] hover:border-[#ffbf00]/40 hover:shadow-2xl hover:shadow-[#ffbf00]/10 transition-all duration-300 flex flex-col justify-between group"
-              >
-                {/* Header Tag Bar */}
-                <div className="px-4 py-3 bg-[#1e1e1e] border-b border-[#2d2b2b] flex items-center justify-between z-10">
-                  <span className="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#ffbf00]/15 text-[#ffbf00] border border-[#ffbf00]/30">
+          {/* 6 Videos Grid: 2 Lines of 3 Videos in 9:16 Aspect Ratio (Matching Image 1) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {homeVideos.map((vid) => {
+              const isMuted = mutedVideos[vid.id] ?? true;
+              const isPlaying = playingVideoId === vid.id;
+              return (
+                <div
+                  key={vid.id}
+                  className="relative rounded-2xl overflow-hidden bg-[#141313] border border-[#2d2b2b] hover:border-[#ffbf00]/50 shadow-2xl hover:shadow-[#ffbf00]/10 transition-all duration-300 group cursor-pointer aspect-[9/16] min-h-[480px]"
+                  onMouseEnter={() => {
+                    if (window.innerWidth > 768) playSingleVideo(vid.id);
+                  }}
+                  onMouseLeave={() => {
+                    if (window.innerWidth > 768) playSingleVideo(null);
+                  }}
+                  onClick={() => {
+                    playSingleVideo(isPlaying ? null : vid.id);
+                  }}
+                >
+                  {/* Real Meydani Native Video with Poster */}
+                  <video
+                    ref={(el) => { videoRefs.current[vid.id] = el; }}
+                    src={vid.url}
+                    poster={vid.poster}
+                    loop
+                    muted={isMuted}
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover block"
+                  />
+
+                  {/* Play Icon Overlay (Visible when video is paused) */}
+                  {!isPlaying && (
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-black/60 backdrop-blur-md border border-[#ffbf00] flex items-center justify-center z-10 pointer-events-none shadow-xl shadow-black/80 transition-transform duration-300 group-hover:scale-110">
+                      <Play className="w-5 h-5 text-[#ffbf00] fill-[#ffbf00] ml-0.5" />
+                    </div>
+                  )}
+
+                  {/* Top-Left Category Pill Tag */}
+                  <span className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-black/65 backdrop-blur-md border border-[#ffbf00]/40 text-[#ffbf00] text-[11px] font-bold tracking-wider uppercase shadow-md">
                     {vid.tag}
                   </span>
-                  <a
-                    href={vid.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[11px] text-[#8e9192] hover:text-[#ffbf00] font-semibold flex items-center gap-1 transition-colors"
+
+                  {/* Top-Right Sound Toggle Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => toggleMute(vid.id, e)}
+                    aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+                    className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/65 backdrop-blur-md border border-white/25 flex items-center justify-center text-white hover:text-[#ffbf00] hover:border-[#ffbf00] transition-colors cursor-pointer pointer-events-auto shadow-md"
                   >
-                    @meydani-cafe1
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
+                    {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-[#ffbf00]" />}
+                  </button>
 
-                {/* Real Reel Video Embed Container */}
-                <div className="flex-1 w-full relative overflow-hidden bg-[#141313]">
-                  <iframe
-                    src={`https://www.instagram.com/p/${vid.id}/embed/`}
-                    className="w-full h-full border-0 absolute inset-0"
-                    scrolling="no"
-                    allowtransparency="true"
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                    allowFullScreen={true}
-                    loading="lazy"
-                    title={vid.title}
-                  />
-                </div>
-
-                {/* Bottom Scrim Bar */}
-                <div className="p-3.5 bg-[#1e1e1e] border-t border-[#2d2b2b] flex items-center justify-between">
-                  <div className="min-w-0 pr-2">
-                    <h4 className="text-sm font-display font-bold text-[#c8c6c5] truncate group-hover:text-[#ffbf00] transition-colors">
+                  {/* Bottom Gradient Scrim with Title */}
+                  <div className="absolute inset-x-0 bottom-0 pt-20 pb-5 px-5 bg-gradient-to-t from-black/95 via-black/60 to-transparent z-10 flex flex-col gap-1 pointer-events-none">
+                    <h4 className="font-display text-lg font-bold text-white drop-shadow-md leading-snug">
                       {vid.title}
                     </h4>
-                    <span className="text-[10px] uppercase tracking-wider text-[#ffbf00] font-semibold">
-                      9:16 Cinematic Reel
+                    <span className="text-[11px] text-[#ffbf00] font-bold tracking-wider uppercase">
+                      {vid.sub}
                     </span>
                   </div>
-                  <a
-                    href={vid.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-[#141313] border border-[#2d2b2b] text-[#8e9192] hover:text-[#ffbf00] hover:border-[#ffbf00] transition-colors shrink-0"
-                    title="View on Instagram"
-                  >
-                    <Instagram className="w-4 h-4" />
-                  </a>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

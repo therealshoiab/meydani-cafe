@@ -1,87 +1,251 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Instagram, ExternalLink, Play, Image as ImageIcon, Video, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { Play, Video, Image as ImageIcon, X, ChevronLeft, ChevronRight, Maximize2, ExternalLink, Instagram } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
-import galleryData from '../data/gallery-data.json';
 
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState('all'); // 'all' | 'photos' | 'videos'
-  const [visibleCount, setVisibleCount] = useState(12);
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const videoRefs = useRef({});
   const cardRefs = useRef({});
 
-  // Helper to extract embed url from Instagram link
-  const getEmbedInfo = (link) => {
-    if (!link) return { code: '', embedUrl: '' };
-    const match = link.match(/\/(p|reel|tv)\/([A-Za-z0-9_-]+)/);
-    const code = match ? match[2] : '';
-    return {
-      code,
-      embedUrl: code ? `https://www.instagram.com/p/${code}/embed/` : link
-    };
-  };
+  const baseUrl = import.meta.env.BASE_URL;
 
-  // Enhance items with type and embed info
-  const items = useMemo(() => {
-    return galleryData.map((item, idx) => {
-      const isVideo = item.category === 'Reels' || (item.link && item.link.includes('/reel/'));
-      const embedInfo = getEmbedInfo(item.link);
-      return {
-        ...item,
-        index: idx,
-        type: isVideo ? 'video' : 'photo',
-        embedUrl: embedInfo.embedUrl,
-        code: embedInfo.code
-      };
-    });
-  }, []);
+  // Curated genuine Meydani Cafe gallery items matching Image 2's masonry layout
+  const galleryItems = useMemo(() => [
+    {
+      id: 'm1',
+      type: 'video',
+      url: `${baseUrl}media/m1.mp4`,
+      poster: `${baseUrl}media/m1.jpg`,
+      title: 'Meydani Cafe Grills & Vibe',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DZjfw6IOK92/'
+    },
+    {
+      id: 'g_p1',
+      type: 'photo',
+      url: `${baseUrl}media/g_p1.jpg`,
+      title: 'Authentic Turkish Kabab Platter',
+      category: 'Food',
+      aspect: 'aspect-square',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/p/DYj7fcdH9vI/'
+    },
+    {
+      id: 'g_v1',
+      type: 'video',
+      url: `${baseUrl}media/g_v1.mp4`,
+      poster: `${baseUrl}media/g_v1.jpg`,
+      title: 'S.ia.06 Dining Experience',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/s.ia.06/reel/DYPUV7ZvuXt/'
+    },
+    {
+      id: 'g_p3',
+      type: 'photo',
+      url: `${baseUrl}media/g_p3.jpg`,
+      title: 'Signature Turkish Pizza Lahmacun',
+      category: 'Food',
+      aspect: 'aspect-video',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/p/DZQOVmqjkb6/'
+    },
+    {
+      id: 'm2',
+      type: 'video',
+      url: `${baseUrl}media/m2.mp4`,
+      poster: `${baseUrl}media/m2.jpg`,
+      title: 'Mubashir Kashmiri Review',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/mubashirkashmirii/reel/DYCWrvWpe5w/'
+    },
+    {
+      id: 'g_p4',
+      type: 'photo',
+      url: `${baseUrl}media/g_p4.jpg`,
+      title: 'Meydani Special Family Feast',
+      category: 'Food',
+      aspect: 'aspect-square',
+      instagramUrl: 'https://www.instagram.com/aimanashrafbhat/p/DPz3jzigbeT/'
+    },
+    {
+      id: 'g_v2',
+      type: 'video',
+      url: `${baseUrl}media/g_v2.mp4`,
+      poster: `${baseUrl}media/g_v2.jpg`,
+      title: 'Xplorer Sahil Food Feature',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/xplorer_sahil/reel/DYPRa7ggaz0/'
+    },
+    {
+      id: 'g_p5',
+      type: 'photo',
+      url: `${baseUrl}media/g_p5.jpg`,
+      title: 'Creamy Hummus Dip with Pita',
+      category: 'Food',
+      aspect: 'aspect-square',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/p/DMfzqBbuxSB/'
+    },
+    {
+      id: 'm3',
+      type: 'video',
+      url: `${baseUrl}media/m3.mp4`,
+      poster: `${baseUrl}media/m3.jpg`,
+      title: 'Authentic Turkish Flavors',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DWsuULoDkCW/'
+    },
+    {
+      id: 'g_p6',
+      type: 'photo',
+      url: `${baseUrl}media/g_p6.jpg`,
+      title: 'Charcoal Grilled Kebab Spread',
+      category: 'Food',
+      aspect: 'aspect-video',
+      instagramUrl: 'https://www.instagram.com/foods.in.kashmir/p/DGr9wZiPun6/'
+    },
+    {
+      id: 'g_v3',
+      type: 'video',
+      url: `${baseUrl}media/g_v3.mp4`,
+      poster: `${baseUrl}media/g_v3.jpg`,
+      title: 'NexGen Marketing Food Tour',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/nexgen.marketting/reel/DZhtId9JvDx/'
+    },
+    {
+      id: 'g_p7',
+      type: 'photo',
+      url: `${baseUrl}media/g_p7.jpg`,
+      title: 'Traditional Turkish Cezve Coffee',
+      category: 'Food',
+      aspect: 'aspect-square',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/p/Cmx6E2Tt8W4/'
+    },
+    {
+      id: 'm4',
+      type: 'video',
+      url: `${baseUrl}media/m4.mp4`,
+      poster: `${baseUrl}media/m4.jpg`,
+      title: 'Warm Kunafa Preparation',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DZBuQ53OlwQ/'
+    },
+    {
+      id: 'g_v4',
+      type: 'video',
+      url: `${baseUrl}media/g_v4.mp4`,
+      poster: `${baseUrl}media/g_v4.jpg`,
+      title: 'Meydani Special Platter Grill',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DYGJGjeu4eN/'
+    },
+    {
+      id: 'm5',
+      type: 'video',
+      url: `${baseUrl}media/m5.mp4`,
+      poster: `${baseUrl}media/m5.jpg`,
+      title: 'Weekend Riverside Feast',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DYrajFsMmse/'
+    },
+    {
+      id: 'g_v6',
+      type: 'video',
+      url: `${baseUrl}media/g_v6.mp4`,
+      poster: `${baseUrl}media/g_v6.jpg`,
+      title: 'Riverside Sunset Atmosphere',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DXvBfzpuguO/'
+    },
+    {
+      id: 'm6',
+      type: 'video',
+      url: `${baseUrl}media/m6.mp4`,
+      poster: `${baseUrl}media/m6.jpg`,
+      title: 'Traditional Turkish Samovar',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DYBfjSQOoxf/'
+    },
+    {
+      id: 'g_v7',
+      type: 'video',
+      url: `${baseUrl}media/g_v7.mp4`,
+      poster: `${baseUrl}media/g_v7.jpg`,
+      title: 'Rabiya95 Official Review',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/rabiya95_official/reel/DXljtQeE2KL/'
+    },
+    {
+      id: 'g_v8',
+      type: 'video',
+      url: `${baseUrl}media/g_v8.mp4`,
+      poster: `${baseUrl}media/g_v8.jpg`,
+      title: 'Fresh Sizzling Tandoor',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DXdbH4rDlMy/'
+    },
+    {
+      id: 'g_v9',
+      type: 'video',
+      url: `${baseUrl}media/g_v9.mp4`,
+      poster: `${baseUrl}media/g_v9.jpg`,
+      title: 'Signature Lavash Wrap',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/meydani_cafe1/reel/DXBR_c0DtQe/'
+    },
+    {
+      id: 'g_v10',
+      type: 'video',
+      url: `${baseUrl}media/g_v10.mp4`,
+      poster: `${baseUrl}media/g_v10.jpg`,
+      title: 'Nooriverse Experience',
+      category: 'Reels',
+      aspect: 'aspect-[9/16]',
+      instagramUrl: 'https://www.instagram.com/nooriversse/reel/DWq01_gCf5H/'
+    }
+  ], [baseUrl]);
 
   // Filter items based on activeTab
   const filteredItems = useMemo(() => {
-    if (activeTab === 'photos') {
-      return items.filter(item => item.type === 'photo');
+    if (activeTab === 'photos') return galleryItems.filter(item => item.type === 'photo');
+    if (activeTab === 'videos') return galleryItems.filter(item => item.type === 'video');
+    return galleryItems;
+  }, [galleryItems, activeTab]);
+
+  // Handle video hover to play muted preview
+  const handleMouseEnter = (id) => {
+    const el = videoRefs.current[id];
+    if (el) {
+      el.muted = true;
+      el.play().catch(() => {});
     }
-    if (activeTab === 'videos') {
-      return items.filter(item => item.type === 'video');
-    }
-    return items;
-  }, [items, activeTab]);
-
-  const visibleItems = useMemo(() => {
-    return filteredItems.slice(0, visibleCount);
-  }, [filteredItems, visibleCount]);
-
-  const photosCount = useMemo(() => items.filter(i => i.type === 'photo').length, [items]);
-  const videosCount = useMemo(() => items.filter(i => i.type === 'video').length, [items]);
-
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    setVisibleCount(12);
-  };
-
-  // 3D Parallax Tilt Effect on cards
-  const handleMouseMove = (e, id) => {
-    const card = cardRefs.current[id];
-    if (!card || window.innerWidth < 1024) return;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -5;
-    const rotateY = ((x - centerX) / centerX) * 5;
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
   };
 
   const handleMouseLeave = (id) => {
-    const card = cardRefs.current[id];
-    if (!card) return;
-    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    const el = videoRefs.current[id];
+    if (el) {
+      el.pause();
+      el.currentTime = 0;
+    }
   };
 
-  // Lightbox navigation
-  const openLightbox = (indexInFiltered) => {
-    setLightboxIndex(indexInFiltered);
+  // Lightbox handlers
+  const openLightbox = (index) => {
+    setLightboxIndex(index);
   };
 
   const closeLightbox = () => {
@@ -98,7 +262,6 @@ export default function Gallery() {
     setLightboxIndex((lightboxIndex + 1) % filteredItems.length);
   };
 
-  // Keyboard navigation for Lightbox
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (lightboxIndex === null) return;
@@ -115,186 +278,122 @@ export default function Gallery() {
   return (
     <div className="bg-[#141313] min-h-screen pt-28 pb-24 px-4 sm:px-6">
       <SEOHead 
-        title="Photo & Video Gallery" 
-        description="Experience the visual story of Meydani Cafe, Srinagar. Explore authentic Turkish kebabs, Kunafa reels, riverside Jhelum views, and guest dining moments."
+        title="Ambiance & Culinary Gallery" 
+        description="Experience the visual story of Meydani Cafe, Srinagar. Authentic Turkish culinary reels, sizzling platters, Jhelum river views, and guest dining moments."
         path="/gallery"
       />
 
       <div className="max-w-[1240px] mx-auto space-y-10">
         
-        {/* Header Block */}
+        {/* Header Block Matching Image 2 */}
         <div className="text-center space-y-3">
           <span className="text-xs uppercase tracking-[0.25em] text-[#ffbf00] font-semibold">
-            Visual Ambiance &bull; Social Stories
+            Visual Showcase
           </span>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-[#c8c6c5]">
-            Meydani Cafe Gallery
+            Ambiance &amp; Culinary Gallery
           </h1>
-          <p className="text-sm text-[#8e9192] max-w-xl mx-auto">
-            A curated look into our charcoal kitchens, riverside seating, and signature Turkish feasts.
-          </p>
-          <div className="w-14 h-[2px] bg-[#ffbf00] mx-auto mt-4" />
+          <div className="w-16 h-[2.5px] bg-[#ffbf00] mx-auto mt-4 rounded-full" />
         </div>
 
-        {/* AmberLeaf-Parity Category Tabs & Social Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-[#2d2b2b] pb-6">
-          {/* Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar max-w-full p-1 bg-[#1e1e1e] border border-[#2d2b2b] rounded-xl">
-            <button
-              onClick={() => handleTabChange('all')}
-              className={`px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer ${
-                activeTab === 'all'
-                  ? 'bg-[#ffbf00] text-[#402d00] shadow-md shadow-[#ffbf00]/20'
-                  : 'text-[#8e9192] hover:text-[#c8c6c5]'
-              }`}
-            >
-              All Media
-              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeTab === 'all' ? 'bg-[#402d00]/20 text-[#402d00]' : 'bg-[#141313] text-[#8e9192]'}`}>
-                {items.length}
-              </span>
-            </button>
-
-            <button
-              onClick={() => handleTabChange('videos')}
-              className={`px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer ${
-                activeTab === 'videos'
-                  ? 'bg-[#ffbf00] text-[#402d00] shadow-md shadow-[#ffbf00]/20'
-                  : 'text-[#8e9192] hover:text-[#c8c6c5]'
-              }`}
-            >
-              <Video className="w-3.5 h-3.5" />
-              Videos &amp; Reels
-              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeTab === 'videos' ? 'bg-[#402d00]/20 text-[#402d00]' : 'bg-[#141313] text-[#8e9192]'}`}>
-                {videosCount}
-              </span>
-            </button>
-
-            <button
-              onClick={() => handleTabChange('photos')}
-              className={`px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer ${
-                activeTab === 'photos'
-                  ? 'bg-[#ffbf00] text-[#402d00] shadow-md shadow-[#ffbf00]/20'
-                  : 'text-[#8e9192] hover:text-[#c8c6c5]'
-              }`}
-            >
-              <ImageIcon className="w-3.5 h-3.5" />
-              Photos
-              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeTab === 'photos' ? 'bg-[#402d00]/20 text-[#402d00]' : 'bg-[#141313] text-[#8e9192]'}`}>
-                {photosCount}
-              </span>
-            </button>
-          </div>
-
-          {/* Social Direct Follow */}
-          <a
-            href="https://www.instagram.com/meydani_cafe1/?hl=en"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-xl bg-[#1e1e1e] border border-[#2d2b2b] text-[#c8c6c5] hover:border-[#ffbf00] hover:text-[#ffbf00] text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition-all"
+        {/* Filter Buttons Matching Image 2 */}
+        <div className="gallery-tab-container">
+          <button
+            onClick={() => setActiveTab('all')}
+            className={`gallery-tab-btn ${activeTab === 'all' ? 'active' : ''}`}
           >
-            <Instagram className="w-4 h-4 text-[#ffbf00]" />
-            @meydani-cafe1
-          </a>
+            All Media
+          </button>
+          <button
+            onClick={() => setActiveTab('photos')}
+            className={`gallery-tab-btn ${activeTab === 'photos' ? 'active' : ''}`}
+          >
+            Photos
+          </button>
+          <button
+            onClick={() => setActiveTab('videos')}
+            className={`gallery-tab-btn ${activeTab === 'videos' ? 'active' : ''}`}
+          >
+            Videos
+          </button>
         </div>
 
-        {/* Media Grid with AmberLeaf Parallax Tilt and Clean Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
-            {visibleItems.map((item, index) => (
-              <motion.div
+        {/* 3-Column Pure Masonry Grid Matching Image 2 */}
+        <div className="masonry-grid">
+          {filteredItems.map((item, index) => {
+            const isVideo = item.type === 'video';
+
+            return (
+              <div
                 key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
+                className="masonry-item"
                 ref={(el) => { cardRefs.current[item.id] = el; }}
-                onMouseMove={(e) => handleMouseMove(e, item.id)}
-                onMouseLeave={() => handleMouseLeave(item.id)}
-                className="w-full h-[520px] rounded-2xl overflow-hidden bg-[#1e1e1e] border border-[#2d2b2b] hover:border-[#ffbf00]/40 hover:shadow-2xl hover:shadow-[#ffbf00]/10 transition-all duration-300 flex flex-col justify-between group"
-                style={{ transformStyle: 'preserve-3d', transition: 'transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s' }}
               >
-                {/* Card Top Header */}
-                <div className="p-3.5 bg-[#141313] border-b border-[#2d2b2b] flex items-center justify-between z-10">
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#ffbf00]/15 text-[#ffbf00] border border-[#ffbf00]/30 flex items-center gap-1.5">
-                    {item.type === 'video' ? <Video className="w-3 h-3" /> : <ImageIcon className="w-3 h-3" />}
-                    {item.category || (item.type === 'video' ? 'Reel' : 'Photo')}
-                  </span>
-                  
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => openLightbox(index)}
-                      className="p-1.5 rounded-lg bg-[#1e1e1e] border border-[#2d2b2b] text-[#8e9192] hover:text-[#ffbf00] hover:border-[#ffbf00] transition-colors"
-                      title="Expand Lightbox"
-                    >
-                      <Maximize2 className="w-3.5 h-3.5" />
-                    </button>
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded-lg bg-[#1e1e1e] border border-[#2d2b2b] text-[#8e9192] hover:text-[#ffbf00] hover:border-[#ffbf00] transition-colors"
-                      title="Open on Instagram"
-                    >
-                      <Instagram className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
+                <div
+                  onClick={() => openLightbox(index)}
+                  onMouseEnter={() => isVideo && handleMouseEnter(item.id)}
+                  onMouseLeave={() => isVideo && handleMouseLeave(item.id)}
+                  className="relative rounded-2xl overflow-hidden bg-[#1e1e1e] border border-[#2d2b2b] hover:border-[#ffbf00]/50 shadow-xl hover:shadow-2xl hover:shadow-[#ffbf00]/10 transition-all duration-300 group cursor-pointer"
+                >
+                  {isVideo ? (
+                    /* Video Element */
+                    <div className="relative w-full">
+                      <video
+                        ref={(el) => { videoRefs.current[item.id] = el; }}
+                        src={item.url}
+                        poster={item.poster}
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="w-full object-cover rounded-2xl block"
+                      />
 
-                {/* Real Reel / Photo Embed Frame */}
-                <div className="flex-1 w-full relative overflow-hidden bg-[#141313]">
-                  <iframe
-                    src={item.embedUrl}
-                    className="w-full h-full border-0 absolute inset-0"
-                    scrolling="no"
-                    allowtransparency="true"
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                    allowFullScreen={true}
-                    loading="lazy"
-                    title={item.label}
-                  />
-                </div>
+                      {/* Video Indicator Icon in Top-Right Matching Image 2 */}
+                      <div className="absolute top-3.5 right-3.5 z-10 w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-md">
+                        <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
+                      </div>
 
-                {/* Card Bottom Details Bar */}
-                <div className="p-4 bg-[#141313] border-t border-[#2d2b2b] flex items-center justify-between gap-3">
-                  <div className="min-w-0 pr-2">
-                    <h3 className="font-display text-sm font-bold text-[#c8c6c5] truncate group-hover:text-[#ffbf00] transition-colors">
-                      {item.label}
-                    </h3>
-                    <span className="text-[10px] uppercase tracking-wider text-[#8e9192]">
-                      Meydani Cafe &bull; @meydani-cafe1
+                      {/* Instagram Link Pill at Bottom Matching Image 2 */}
+                      <div className="absolute bottom-3.5 left-3.5 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[11px] text-[#c8c6c5] group-hover:text-[#ffbf00] group-hover:border-[#ffbf00]/40 transition-colors shadow-md">
+                        <Instagram className="w-3 h-3 text-[#ffbf00]" />
+                        <span>instagram.com</span>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Photo Element */
+                    <div className="relative w-full overflow-hidden">
+                      <img
+                        src={item.url}
+                        alt={item.title}
+                        loading="lazy"
+                        className="w-full object-cover rounded-2xl block transition-transform duration-500 group-hover:scale-105"
+                      />
+                      {/* Photo Badge */}
+                      <div className="absolute top-3.5 right-3.5 z-10 w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Maximize2 className="w-3.5 h-3.5 text-white" />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Subtle Title Overlay on Hover */}
+                  <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end pointer-events-none">
+                    <p className="font-display text-sm font-bold text-white truncate drop-shadow-md">
+                      {item.title}
+                    </p>
+                    <span className="text-[10px] uppercase font-semibold text-[#ffbf00]">
+                      Meydani Cafe &bull; Srinagar
                     </span>
                   </div>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 text-xs font-semibold text-[#ffbf00] hover:underline flex items-center gap-1"
-                  >
-                    View
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
-
-        {/* Load More Pagination Button */}
-        {visibleCount < filteredItems.length && (
-          <div className="text-center pt-6">
-            <button
-              onClick={() => setVisibleCount(prev => prev + 12)}
-              className="px-8 py-3.5 bg-[#ffbf00] hover:bg-[#ffbf00]/95 text-[#402d00] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-[#ffbf00]/15 cursor-pointer pointer-events-auto"
-            >
-              Load More Media ({filteredItems.length - visibleCount} Remaining)
-            </button>
-          </div>
-        )}
 
       </div>
 
-      {/* AmberLeaf-Parity Fullscreen Lightbox Modal */}
+      {/* Fullscreen Lightbox Modal */}
       <AnimatePresence>
         {currentLightboxItem && (
           <motion.div
@@ -304,24 +403,23 @@ export default function Gallery() {
             className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
             onClick={closeLightbox}
           >
-            {/* Modal Container */}
             <div 
-              className="relative w-full max-w-2xl bg-[#1e1e1e] border border-[#2d2b2b] rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+              className="relative w-full max-w-2xl bg-[#1e1e1e] border border-[#2d2b2b] rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Top Modal Bar */}
-              <div className="px-5 py-4 border-b border-[#2d2b2b] flex items-center justify-between bg-[#141313]">
+              {/* Modal Header */}
+              <div className="px-5 py-3.5 border-b border-[#2d2b2b] flex items-center justify-between bg-[#141313]">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-[#ffbf00]/15 text-[#ffbf00] border border-[#ffbf00]/30">
+                  <span className="text-xs uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#ffbf00]/15 text-[#ffbf00] border border-[#ffbf00]/30">
                     {currentLightboxItem.category || currentLightboxItem.type}
                   </span>
                   <span className="text-xs text-[#8e9192]">
                     {lightboxIndex + 1} of {filteredItems.length}
                   </span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                   <a
-                    href={currentLightboxItem.link}
+                    href={currentLightboxItem.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-[#1e1e1e] border border-[#2d2b2b] text-[#8e9192] hover:text-[#ffbf00] transition-colors"
@@ -339,27 +437,33 @@ export default function Gallery() {
                 </div>
               </div>
 
-              {/* Lightbox Embed Frame */}
-              <div className="w-full h-[540px] relative bg-[#141313]">
-                <iframe
-                  src={currentLightboxItem.embedUrl}
-                  className="w-full h-full border-0 absolute inset-0"
-                  scrolling="no"
-                  allowtransparency="true"
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                  allowFullScreen={true}
-                  title={currentLightboxItem.label}
-                />
+              {/* Lightbox Media Body */}
+              <div className="w-full flex-1 min-h-[360px] max-h-[65vh] bg-black flex items-center justify-center overflow-hidden relative">
+                {currentLightboxItem.type === 'video' ? (
+                  <video
+                    src={currentLightboxItem.url}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="max-w-full max-h-[65vh] object-contain"
+                  />
+                ) : (
+                  <img
+                    src={currentLightboxItem.url}
+                    alt={currentLightboxItem.title}
+                    className="max-w-full max-h-[65vh] object-contain"
+                  />
+                )}
               </div>
 
-              {/* Bottom Lightbox Bar */}
+              {/* Modal Footer */}
               <div className="p-4 bg-[#141313] border-t border-[#2d2b2b] flex items-center justify-between">
                 <div className="min-w-0 pr-4">
                   <h4 className="font-display text-base font-bold text-[#c8c6c5] truncate">
-                    {currentLightboxItem.label}
+                    {currentLightboxItem.title}
                   </h4>
                   <p className="text-xs text-[#8e9192]">
-                    Shared by Meydani Cafe on Instagram
+                    Meydani Cafe &bull; The Bund Road, Srinagar
                   </p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
