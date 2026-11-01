@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, MapPin, Phone, MessageSquare, Star, ChevronDown, Award, Shield, ThumbsUp, Play, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Phone, MessageSquare, Star, ChevronDown, Award, Shield, ThumbsUp, Play, Instagram, ExternalLink } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import RatingBadge from '../components/RatingBadge';
 
@@ -46,40 +46,45 @@ const reviews = [
 export default function Home() {
   const whatsappNumber = '917780938743';
 
-  // --- 6 CULINARY MOTION VIDEOS (2 ROWS OF 3 IN 9:16) ---
+  // --- 6 CULINARY MOTION REELS FROM MEYDANI CAFE SOCIALS (2 ROWS OF 3 IN 9:16) ---
   const homeVideos = [
-    { id: 's1', url: `${import.meta.env.BASE_URL}images/s1.mp4`, title: 'The Royal Samovar Brew', tag: 'Artisanal Kahwa' },
-    { id: 's2', url: `${import.meta.env.BASE_URL}images/s2.mp4`, title: 'Hand-Pressed Kebab Craft', tag: 'Turkish Grills' },
-    { id: 's4', url: `${import.meta.env.BASE_URL}images/s4.mp4`, title: 'Fiery Charcoal Tandoor', tag: 'Smoked Platters' },
-    { id: 's5', url: `${import.meta.env.BASE_URL}images/s5.mp4`, title: 'Juicy Skewers & Warm Pita', tag: 'Authentic Mezze' },
-    { id: 's7', url: `${import.meta.env.BASE_URL}images/s7.mp4`, title: 'Signature Refresher Pour', tag: 'Beverage Bar' },
-    { id: 's8', url: `${import.meta.env.BASE_URL}images/s8.mp4`, title: 'Evening Ambiance by Jhelum', tag: 'Riverside Lounge' },
+    {
+      id: 'DZjfw6IOK92',
+      title: 'Meydani Cafe Grills & Vibe',
+      tag: 'Turkish Grills',
+      link: 'https://www.instagram.com/meydani_cafe1/reel/DZjfw6IOK92/?hl=en',
+    },
+    {
+      id: 'DYCWrvWpe5w',
+      title: 'Mubashir Kashmiri Review',
+      tag: 'Food Review',
+      link: 'https://www.instagram.com/mubashirkashmirii/reel/DYCWrvWpe5w/?hl=en',
+    },
+    {
+      id: 'DWsuULoDkCW',
+      title: 'Authentic Turkish Flavors',
+      tag: 'Signature Feast',
+      link: 'https://www.instagram.com/meydani_cafe1/reel/DWsuULoDkCW/?hl=en',
+    },
+    {
+      id: 'DZBuQ53OlwQ',
+      title: 'Warm Kunafa Preparation',
+      tag: 'Turkish Desserts',
+      link: 'https://www.instagram.com/meydani_cafe1/reel/DZBuQ53OlwQ/?hl=en',
+    },
+    {
+      id: 'DYrajFsMmse',
+      title: 'Weekend Riverside Feast',
+      tag: 'Riverside Dining',
+      link: 'https://www.instagram.com/meydani_cafe1/reel/DYrajFsMmse/?hl=en',
+    },
+    {
+      id: 'DYBfjSQOoxf',
+      title: 'Turkish Tea Samovar Experience',
+      tag: 'Chai & Samovar',
+      link: 'https://www.instagram.com/meydani_cafe1/reel/DYBfjSQOoxf/?hl=en',
+    },
   ];
-
-  const [mutedVideos, setMutedVideos] = useState({
-    s1: true, s2: true, s4: true, s5: true, s7: true, s8: true
-  });
-  const [playingVideoId, setPlayingVideoId] = useState(null);
-  const videoRefs = useRef({});
-
-  const playSingleVideo = (id) => {
-    setPlayingVideoId(id);
-    homeVideos.forEach((v) => {
-      const el = videoRefs.current[v.id];
-      if (el) {
-        if (v.id === id) {
-          el.play().catch(() => {});
-        } else {
-          el.pause();
-        }
-      }
-    });
-  };
-
-  const toggleMute = (id, e) => {
-    e.stopPropagation();
-    setMutedVideos(prev => ({ ...prev, [id]: !prev[id] }));
-  };
 
   const makeWhatsAppUrl = (dishName) => {
     const text = encodeURIComponent(`Hi Meydani Cafe! I would like to order the featured dish: *${dishName}* from your website.`);
@@ -487,9 +492,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. CULINARY MOTION — 6 VIDEOS IN 2 LINES (3 PER LINE, 9:16 RATIO) */}
+      {/* 7. CULINARY MOTION — 6 REELS FROM MEYDANI CAFE (2 ROWS OF 3 IN 9:16) */}
       <section className="py-20 bg-[#1e1e1e] border-y border-[#2d2b2b]">
-        <div className="max-w-[1200px] mx-auto px-6 space-y-10">
+        <div className="max-w-[1240px] mx-auto px-6 space-y-10">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <span className="text-xs uppercase tracking-[0.2em] text-[#ffbf00] font-semibold">
@@ -507,166 +512,65 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* 6 Videos Grid: 2 Lines of 3 Videos in 9:16 Aspect Ratio */}
-          <div className="home-videos-grid-3x2">
-            {homeVideos.map((vid) => {
-              const isMuted = mutedVideos[vid.id] ?? true;
-              const isPlaying = playingVideoId === vid.id;
-              return (
-                <div
-                  key={vid.id}
-                  className="video-card-9-16 group"
-                  style={{ cursor: 'pointer', position: 'relative' }}
-                  onMouseEnter={() => {
-                    if (window.innerWidth > 768) playSingleVideo(vid.id);
-                  }}
-                  onMouseLeave={() => {
-                    if (window.innerWidth > 768) playSingleVideo(null);
-                  }}
-                  onClick={() => {
-                    playSingleVideo(isPlaying ? null : vid.id);
-                  }}
-                >
-                  <video
-                    ref={(el) => {
-                      videoRefs.current[vid.id] = el;
-                    }}
-                    src={vid.url}
-                    loop
-                    muted={isMuted}
-                    playsInline
-                    preload="metadata"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block',
-                    }}
-                  />
-
-                  {/* Play Icon Overlay (Visible when video is paused) */}
-                  {!isPlaying && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: '54px',
-                        height: '54px',
-                        borderRadius: '50%',
-                        backgroundColor: 'rgba(0, 0, 0, 0.55)',
-                        backdropFilter: 'blur(8px)',
-                        border: '1.5px solid #ffbf00',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        zIndex: 3,
-                        pointerEvents: 'none',
-                        boxShadow: '0 4px 18px rgba(0, 0, 0, 0.5)',
-                        transition: 'opacity 0.3s ease',
-                      }}
-                    >
-                      <Play
-                        size={22}
-                        fill="#ffbf00"
-                        color="#ffbf00"
-                        style={{ marginLeft: '3px' }}
-                      />
-                    </div>
-                  )}
-
-                  {/* Category Pill Tag */}
-                  <span
-                    style={{
-                      position: 'absolute',
-                      top: '1rem',
-                      left: '1rem',
-                      backgroundColor: 'rgba(0, 0, 0, 0.65)',
-                      backdropFilter: 'blur(8px)',
-                      color: '#ffbf00',
-                      fontSize: '0.72rem',
-                      fontWeight: 700,
-                      letterSpacing: '0.06em',
-                      padding: '0.35rem 0.75rem',
-                      borderRadius: '9999px',
-                      border: '1px solid rgba(255, 191, 0, 0.35)',
-                      textTransform: 'uppercase',
-                      zIndex: 3,
-                    }}
-                  >
+          {/* 6 Videos Grid: 2 Lines of 3 Videos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {homeVideos.map((vid) => (
+              <div
+                key={vid.id}
+                className="w-full h-[520px] rounded-2xl overflow-hidden bg-[#141313] border border-[#2d2b2b] hover:border-[#ffbf00]/40 hover:shadow-2xl hover:shadow-[#ffbf00]/10 transition-all duration-300 flex flex-col justify-between group"
+              >
+                {/* Header Tag Bar */}
+                <div className="px-4 py-3 bg-[#1e1e1e] border-b border-[#2d2b2b] flex items-center justify-between z-10">
+                  <span className="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#ffbf00]/15 text-[#ffbf00] border border-[#ffbf00]/30">
                     {vid.tag}
                   </span>
-
-                  {/* Sound Toggle Button */}
-                  <button
-                    onClick={(e) => toggleMute(vid.id, e)}
-                    aria-label={isMuted ? 'Unmute video' : 'Mute video'}
-                    style={{
-                      position: 'absolute',
-                      top: '1rem',
-                      right: '1rem',
-                      backgroundColor: 'rgba(0, 0, 0, 0.65)',
-                      backdropFilter: 'blur(8px)',
-                      border: '1px solid rgba(255, 255, 255, 0.25)',
-                      color: isMuted ? '#ffffff' : '#ffbf00',
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      zIndex: 4,
-                      transition: 'all 0.2s ease',
-                    }}
+                  <a
+                    href={vid.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] text-[#8e9192] hover:text-[#ffbf00] font-semibold flex items-center gap-1 transition-colors"
                   >
-                    {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-                  </button>
+                    @meydani-cafe1
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
 
-                  {/* Bottom Gradient Scrim with Title */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      padding: '3rem 1.25rem 1.25rem 1.25rem',
-                      background:
-                        'linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%)',
-                      zIndex: 2,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.35rem',
-                    }}
-                  >
-                    <h4
-                      style={{
-                        fontSize: '1.08rem',
-                        color: '#ffffff',
-                        margin: 0,
-                        fontWeight: 600,
-                        lineHeight: 1.3,
-                        textShadow: '0 2px 8px rgba(0,0,0,0.9)',
-                      }}
-                    >
+                {/* Real Reel Video Embed Container */}
+                <div className="flex-1 w-full relative overflow-hidden bg-[#141313]">
+                  <iframe
+                    src={`https://www.instagram.com/p/${vid.id}/embed/`}
+                    className="w-full h-full border-0 absolute inset-0"
+                    scrolling="no"
+                    allowtransparency="true"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    allowFullScreen={true}
+                    loading="lazy"
+                    title={vid.title}
+                  />
+                </div>
+
+                {/* Bottom Scrim Bar */}
+                <div className="p-3.5 bg-[#1e1e1e] border-t border-[#2d2b2b] flex items-center justify-between">
+                  <div className="min-w-0 pr-2">
+                    <h4 className="text-sm font-display font-bold text-[#c8c6c5] truncate group-hover:text-[#ffbf00] transition-colors">
                       {vid.title}
                     </h4>
-                    <span
-                      style={{
-                        fontSize: '0.74rem',
-                        color: '#ffbf00',
-                        fontWeight: 600,
-                        letterSpacing: '0.08em',
-                        textTransform: 'uppercase',
-                      }}
-                    >
-                      9:16 Cinematic Motion
+                    <span className="text-[10px] uppercase tracking-wider text-[#ffbf00] font-semibold">
+                      9:16 Cinematic Reel
                     </span>
                   </div>
+                  <a
+                    href={vid.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-[#141313] border border-[#2d2b2b] text-[#8e9192] hover:text-[#ffbf00] hover:border-[#ffbf00] transition-colors shrink-0"
+                    title="View on Instagram"
+                  >
+                    <Instagram className="w-4 h-4" />
+                  </a>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>

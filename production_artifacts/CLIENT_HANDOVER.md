@@ -76,13 +76,12 @@ All menu categories, dish names, pricing details, photos, and descriptions are r
 
 ---
 
-## 4. How to Replace Local Media & Videos
+## 4. How to Update Social Media Reels & Gallery Items
 
-- **Videos & Gallery Images**: Located in `/public/images/`.
-  - Video reels: `s1.mp4` through `s14.mp4`
-  - Photos: `g1.jpg` through `g13.jpg`
-  - To add or replace reels, place new MP4 files in this folder and reference them in [Gallery.jsx](file:///C:/Users/Baha/Documents/Meydani%20cafe/restaurant-website/src/pages/Gallery.jsx) or [Home.jsx](file:///C:/Users/Baha/Documents/Meydani%20cafe/restaurant-website/src/pages/Home.jsx).
-- **Brand Logo**: Located at `/src/assets/logo.png` and `/public/images/logo.png`. Replace this file to update the logo site-wide.
+- **Gallery Media Data**: All 69 gallery posts and reels are configured inside [src/data/gallery-data.json](file:///C:/Users/Baha/Documents/Meydani%20cafe/restaurant-website/src/data/gallery-data.json).
+  - To add new Instagram reels or photos, add a new entry with the Instagram link (e.g. `https://www.instagram.com/meydani_cafe1/reel/...`), label, and category (`Reels`, `Food`, or `Ambiance`).
+  - The gallery automatically generates the proper embed codes and displays them with filter tabs and lightbox viewing.
+- **Brand Logo**: Located at `/src/assets/logo.png` and `/public/logo.png`. Replace this file to update the logo site-wide.
 
 ---
 
