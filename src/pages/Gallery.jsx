@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Video, Image as ImageIcon, X, ChevronLeft, ChevronRight, Maximize2, ExternalLink, Instagram } from 'lucide-react';
+import { Play, Video, Image as ImageIcon, X, ChevronLeft, ChevronRight, Maximize2, ExternalLink, Instagram, Volume2, VolumeX } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import galleryMediaData from '../data/gallery-media.json';
 
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState('all'); // 'all' | 'photos' | 'videos'
-  const [visibleCount, setVisibleCount] = useState(18);
+  const [visibleCount, setVisibleCount] = useState(12); // Fast initial load with 12 items
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [mutedVideos, setMutedVideos] = useState({});
   const videoRefs = useRef({});
   const cardRefs = useRef({});
 
@@ -39,14 +40,33 @@ export default function Gallery() {
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    setVisibleCount(18);
+    setVisibleCount(12);
   };
 
-  // Video hover to play muted preview
+  // Toggle Mute / Sound for a specific video
+  const toggleMute = (id, e) => {
+    e.stopPropagation();
+    setMutedVideos(prev => {
+      const isCurrentlyMuted = prev[id] !== undefined ? prev[id] : true;
+      const nextMuted = !isCurrentlyMuted;
+      
+      const el = videoRefs.current[id];
+      if (el) {
+        el.muted = nextMuted;
+        if (!nextMuted) {
+          el.play().catch(() => {});
+        }
+      }
+      return { ...prev, [id]: nextMuted };
+    });
+  };
+
+  // Video hover to play preview
   const handleMouseEnter = (id) => {
     const el = videoRefs.current[id];
     if (el) {
-      el.muted = true;
+      const isMuted = mutedVideos[id] !== undefined ? mutedVideos[id] : true;
+      el.muted = isMuted;
       el.play().catch(() => {});
     }
   };
@@ -55,7 +75,6 @@ export default function Gallery() {
     const el = videoRefs.current[id];
     if (el) {
       el.pause();
-      el.currentTime = 0;
     }
   };
 
@@ -138,6 +157,7 @@ export default function Gallery() {
         <div className="masonry-grid">
           {visibleItems.map((item, index) => {
             const isVideo = item.type === 'video';
+            const isMuted = mutedVideos[item.id] !== undefined ? mutedVideos[item.id] : true;
 
             return (
               <div
@@ -159,15 +179,33 @@ export default function Gallery() {
                         src={item.fullUrl}
                         poster={item.fullPoster}
                         loop
-                        muted
+                        muted={isMuted}
                         playsInline
-                        preload="metadata"
+                        preload="none"
                         className="w-full object-cover rounded-2xl block"
                       />
 
-                      {/* Video Indicator Icon in Top-Right Matching Image 2 */}
-                      <div className="absolute top-3.5 right-3.5 z-10 w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-md">
-                        <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
+                      {/* Top-Right Control Group: Audio On/Off Button & Play Icon */}
+                      <div className="absolute top-3.5 right-3.5 z-20 flex items-center gap-2">
+                        {/* Audio On/Off Button */}
+                        <button
+                          type="button"
+                          onClick={(e) => toggleMute(item.id, e)}
+                          className="w-8 h-8 rounded-full bg-black/75 backdrop-blur-md border border-white/25 hover:border-[#ffbf00] flex items-center justify-center text-white hover:text-[#ffbf00] shadow-md transition-colors cursor-pointer pointer-events-auto"
+                          title={isMuted ? "Click to Turn Sound On" : "Click to Mute"}
+                          aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+                        >
+                          {isMuted ? (
+                            <VolumeX className="w-4 h-4 text-white" />
+                          ) : (
+                            <Volume2 className="w-4 h-4 text-[#ffbf00]" />
+                          )}
+                        </button>
+
+                        {/* Video Indicator Play Icon */}
+                        <div className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-md pointer-events-none">
+                          <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
+                        </div>
                       </div>
 
                       {/* Instagram Link Pill at Bottom Matching Image 2 */}
@@ -183,6 +221,7 @@ export default function Gallery() {
                         src={item.fullUrl}
                         alt={item.title}
                         loading="lazy"
+                        decoding="async"
                         className="w-full object-cover rounded-2xl block transition-transform duration-500 group-hover:scale-105"
                       />
                       {/* Photo Badge */}
@@ -211,7 +250,7 @@ export default function Gallery() {
         {visibleCount < filteredItems.length && (
           <div className="text-center pt-6">
             <button
-              onClick={() => setVisibleCount(prev => prev + 18)}
+              onClick={() => setVisibleCount(prev => prev + 12)}
               className="px-8 py-3.5 bg-[#ffbf00] hover:bg-[#ffbf00]/95 text-[#402d00] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-[#ffbf00]/15 cursor-pointer pointer-events-auto"
             >
               Load More Media ({filteredItems.length - visibleCount} Remaining)
